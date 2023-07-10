@@ -17,8 +17,8 @@
 
  @abstract Feature data type.
 
- @constant FXN_DTYPE_UNDEFINED
- Type is undefined or invalid.
+ @constant FXN_DTYPE_NULL
+ Type is `null` or invalid.
 
  @constant FXN_DTYPE_INT8
  Type is a `int8_t` in C/C++ and `sbyte` in C#.
@@ -59,37 +59,37 @@
  @constant FXN_DTYPE_STRING
  Type is `std::string` in C++ and `string` in C#.
 
- @constant FXN_DTYPE_IMAGE
- Type is an encoded image.
-
- @constant FXN_DTYPE_BINARY
- Type is a binary blob.
-
  @constant FXN_DTYPE_LIST
  Type is a sequence.
 
  @constant FXN_DTYPE_DICT
  Type is a dictionary.
+
+ @constant FXN_DTYPE_IMAGE
+ Type is an encoded image.
+
+ @constant FXN_DTYPE_BINARY
+ Type is a binary blob.
 */
 enum FXNDtype {
-    FXN_DTYPE_UNDEFINED     = 0,
-    FXN_DTYPE_INT8          = 10,
-    FXN_DTYPE_INT16         = 2,
-    FXN_DTYPE_INT32         = 3,
-    FXN_DTYPE_INT64         = 4,
-    FXN_DTYPE_UINT8         = 1,
-    FXN_DTYPE_UINT16        = 11,
-    FXN_DTYPE_UINT32        = 12,
-    FXN_DTYPE_UINT64        = 13,
-    FXN_DTYPE_FLOAT16       = 14,
-    FXN_DTYPE_FLOAT32       = 5,
-    FXN_DTYPE_FLOAT64       = 6,
-    FXN_DTYPE_BOOL          = 15,
-    FXN_DTYPE_STRING        = 7,
-    FXN_DTYPE_IMAGE         = 16,
-    FXN_DTYPE_BINARY        = 17,
-    FXN_DTYPE_LIST          = 8,
-    FXN_DTYPE_DICT          = 9,
+    FXN_DTYPE_NULL      = 0,
+    FXN_DTYPE_INT8      = 10,
+    FXN_DTYPE_INT16     = 2,
+    FXN_DTYPE_INT32     = 3,
+    FXN_DTYPE_INT64     = 4,
+    FXN_DTYPE_UINT8     = 1,
+    FXN_DTYPE_UINT16    = 11,
+    FXN_DTYPE_UINT32    = 12,
+    FXN_DTYPE_UINT64    = 13,
+    FXN_DTYPE_FLOAT16   = 14,
+    FXN_DTYPE_FLOAT32   = 5,
+    FXN_DTYPE_FLOAT64   = 6,
+    FXN_DTYPE_BOOL      = 15,
+    FXN_DTYPE_STRING    = 7,
+    FXN_DTYPE_LIST      = 8,
+    FXN_DTYPE_DICT      = 9,
+    FXN_DTYPE_IMAGE     = 16,
+    FXN_DTYPE_BINARY    = 17,
 };
 typedef enum FXNDtype FXNDtype;
 #pragma endregion
