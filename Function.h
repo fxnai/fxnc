@@ -9,8 +9,7 @@
 #pragma once
 
 #include "FXNAPI.h"
-#include "FXNFeatureType.h"
-#include "FXNFeature.h"
-#include "FXNModelConfiguration.h"
-#include "FXNModel.h"
-//#include "FXNPredictor.h"
+#include "FXNStatus.h"
+#include "FXNSignature.h"
+#include "FXNValue.h"
+#include "FXNConfiguration.h"
