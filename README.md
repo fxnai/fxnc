@@ -2,4 +2,4 @@
 
 ![function logo](https://raw.githubusercontent.com/fxnai/.github/main/logo_wide.png)
 
-Function unified C API for running on-device predictions across Android, iOS, macOS, WebAssembly, and Windows.
+Function unified C API (pronounced "funk") for running on-device predictions across Android, iOS, macOS, WebAssembly, and Windows.
