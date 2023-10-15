@@ -153,6 +153,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueGetShape (
 
  @param shape
  Array shape.
+ Can be `NULL` for scalar values.
 
  @param dims
  Number of dimensions in `shape`.

@@ -83,6 +83,24 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNReleaseConfiguration (FXNConfiguratio
 
 #pragma region --Configuration--
 /*!
+ @function FXNConfigurationGetAcceleration
+
+ @abstract Get the acceleration used for making predictions.
+
+ @discussion Get the acceleration used for making predictions.
+
+ @param configuration
+ Predictor configuration.
+
+ @param acceleration
+ Acceleration.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetAcceleration (
+    FXNConfiguration* configuration,
+    FXNAcceleration* acceleration
+);
+
+/*!
  @function FXNConfigurationSetAcceleration
 
  @abstract Specify the acceleration used for making predictions.
@@ -98,6 +116,25 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNReleaseConfiguration (FXNConfiguratio
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetAcceleration (
     FXNConfiguration* configuration,
     FXNAcceleration acceleration
+);
+
+/*!
+ @function FXNConfigurationGetDevice
+
+ @abstract Get the compute device used for ML model inference.
+
+ @discussion Get the compute device used for ML model inference.
+
+ @param configuration
+ Predictor configuration.
+
+ @param device
+ Compute device used for ML model inference.
+ The type of this device is platform-dependent (see https://docs.fxn.ai).
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetDevice (
+    FXNConfiguration* configuration,
+    void** device
 );
 
 /*!
@@ -121,6 +158,29 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetDevice (
 );
 
 /*!
+ @function FXNCofigurationGetFingerprint
+
+ @abstract Get the predictor fingerprint.
+
+ @discussion Get the predictor fingerprint.
+ This is used for caching and optimization.
+
+ @param configuration
+ Predictor configuration.
+
+ @param fingerprint
+ UTF-8 encoded fingerprint. Must not be `NULL`.
+
+ @param size
+ Size of fingerprint buffer.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetFingerprint (
+    FXNConfiguration* configuration,
+    char* fingerprint,
+    int32_t size
+);
+
+/*!
  @function FXNCofigurationSetFingerprint
 
  @abstract Set the predictor fingerprint.
@@ -132,7 +192,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetDevice (
  Predictor configuration.
 
  @param fingerprint
- Predictor fingerprint. Can be `NULL`.
+ UTF-8 encoded fingerprint. Can be `NULL`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetFingerprint (
     FXNConfiguration* configuration,
