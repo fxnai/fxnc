@@ -1,5 +1,5 @@
 //
-//  FXNSignature.h
+//  FXNStatus.h
 //  Function
 //
 //  Created by Yusuf Olokoba on 10/14/2023.
