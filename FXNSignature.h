@@ -140,7 +140,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateParameter (
     const char* name,
     FXNDtype type,
     int32_t dims,
-    int32_t* shape,
+    const int32_t* shape,
     FXNParameter** parameter
 );
 

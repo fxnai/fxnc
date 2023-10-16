@@ -24,8 +24,8 @@
  When this flag is not set, the value data MUST remain valid for the lifetime of the created value.
 */
 enum FXNValueFlags {
-    FXN_VALUE_FLAG_NONE             = 0,
-    FXN_VALUE_FLAG_COPY_DATA  = 1,
+    FXN_VALUE_FLAG_NONE         = 0,
+    FXN_VALUE_FLAG_COPY_DATA    = 1,
 };
 typedef enum FXNValueFlags FXNValueFlags;
 #pragma endregion
@@ -191,7 +191,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateArrayValue (
  Created value.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateStringValue (
-    const char * data,
+    const char* data,
     FXNValue** value
 );
 
@@ -209,7 +209,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateStringValue (
  Created value.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateListValue (
-    const char * data,
+    const char* data,
     FXNValue** value
 );
 
@@ -227,7 +227,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateListValue (
  Created value.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateDictValue (
-    const char * data,
+    const char* data,
     FXNValue** value
 );
 
