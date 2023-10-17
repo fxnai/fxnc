@@ -136,7 +136,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetValue (
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapSetValue (
     FXNValueMap* map,
-    const char* name,
+    const char* key,
     FXNValue* value
 );
 #pragma endregion
