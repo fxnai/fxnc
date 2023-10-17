@@ -10,7 +10,6 @@
 
 #include "FXNAPI.h"
 #include "FXNStatus.h"
-#include "FXNSignature.h"
 #include "FXNValue.h"
 #include "FXNValueMap.h"
 #include "FXNConfiguration.h"
