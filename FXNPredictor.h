@@ -23,7 +23,7 @@ struct FXNPredictor;
 typedef struct FXNPredictor FXNPredictor;
 
 /*!
- @struct FXNCreatePredictorFunc
+ @struct FXNPredictorCreateFunc
  
  @abstract Predictor creation function.
 
@@ -35,13 +35,13 @@ typedef struct FXNPredictor FXNPredictor;
  @param predictor
  Created predictor. Must not be `NULL`.
 */
-typedef FXNStatus (*FXNCreatePredictorFunc) (
+typedef FXNStatus (*FXNPredictorCreateFunc) (
     FXNConfiguration* configuration,
     FXNPredictor** predictor
 );
 
 /*!
- @struct FXNReleasePredictorFunc
+ @struct FXNPredictorReleaseFunc
  
  @abstract Predictor destruction function.
 
@@ -50,10 +50,10 @@ typedef FXNStatus (*FXNCreatePredictorFunc) (
  @param predictor
  Predictor.
 */
-typedef FXNStatus (*FXNReleasePredictorFunc) (FXNPredictor* predictor);
+typedef FXNStatus (*FXNPredictorReleaseFunc) (FXNPredictor* predictor);
 
 /*!
- @struct FXNPredictFunc
+ @struct FXNPredictorPredictFunc
  
  @abstract Prediction function.
 
@@ -68,7 +68,7 @@ typedef FXNStatus (*FXNReleasePredictorFunc) (FXNPredictor* predictor);
  @param outputs
  Prediction outputs. Must not be `NULL`.
 */
-typedef FXNStatus (*FXNPredictFunc) (
+typedef FXNStatus (*FXNPredictorPredictFunc) (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
     FXNValueMap** outputs

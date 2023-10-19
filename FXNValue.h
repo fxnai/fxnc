@@ -129,7 +129,7 @@ typedef struct FXNValue FXNValue;
 
 #pragma region --Lifecycle--
 /*!
- @function FXNReleaseValue
+ @function FXNValueRelease
 
  @abstract Release a value.
 
@@ -138,7 +138,7 @@ typedef struct FXNValue FXNValue;
  @param value
  Value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNReleaseValue (FXNValue* value);
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueRelease (FXNValue* value);
 #pragma endregion
 
 
@@ -224,7 +224,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueGetShape (
 
 #pragma region --Constructors--
 /*!
- @function FXNCreateArrayValue
+ @function FXNValueCreateArray
 
  @abstract Create an array value from a data buffer.
 
@@ -250,7 +250,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueGetShape (
  @param value
  Created value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateArrayValue (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateArray (
     void* data,
     const int32_t* shape,
     int32_t dims,
@@ -260,7 +260,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateArrayValue (
 );
 
 /*!
- @function FXNCreateStringValue
+ @function FXNValueCreateString
 
  @abstract Create a string value from a UTF-8 encoded string.
  
@@ -272,13 +272,13 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateArrayValue (
  @param value
  Created value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateStringValue (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateString (
     const char* data,
     FXNValue** value
 );
 
 /*!
- @function FXNCreateListValue
+ @function FXNValueCreateList
 
  @abstract Create a list value from a JSON-encoded list.
  
@@ -290,13 +290,13 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateStringValue (
  @param value
  Created value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateListValue (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateList (
     const char* data,
     FXNValue** value
 );
 
 /*!
- @function FXNCreateDictValue
+ @function FXNValueCreateDict
 
  @abstract Create a dictionary value from a JSON-encoded dictionary.
  
@@ -308,13 +308,13 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateListValue (
  @param value
  Created value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateDictValue (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateDict (
     const char* data,
     FXNValue** value
 );
 
 /*!
- @function FXNCreateImageValue
+ @function FXNValueCreateImage
 
  @abstract Create an image value from a pixel buffer.
 
@@ -336,7 +336,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateDictValue (
  @param value
  Created value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateImageValue (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateImage (
     const uint8_t* pixelBuffer,
     int32_t width,
     int32_t height,
@@ -345,7 +345,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateImageValue (
 );
 
 /*!
- @function FXNCreateBinaryValue
+ @function FXNValueCreateBinary
 
  @abstract Create a binary value from a raw buffer.
  
@@ -363,7 +363,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateImageValue (
  @param value
  Created value.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateBinaryValue (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateBinary (
     void* buffer,
     int64_t bufferLen,
     FXNValueFlags flags,

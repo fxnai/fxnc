@@ -56,7 +56,7 @@ typedef struct FXNConfiguration FXNConfiguration;
 
 #pragma region --Lifecycle--
 /*!
- @function FXNCreateConfiguration
+ @function FXNConfigurationCreate
 
  @abstract Create a predictor configuration.
 
@@ -65,10 +65,10 @@ typedef struct FXNConfiguration FXNConfiguration;
  @param configuration
  Created configuration. Must not be `NULL`.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateConfiguration (FXNConfiguration** configuration);
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationCreate (FXNConfiguration** configuration);
 
 /*!
- @function FXNReleaseConfiguration
+ @function FXNConfigurationRelease
 
  @abstract Release the predictor configuration.
 
@@ -77,7 +77,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateConfiguration (FXNConfiguration
  @param configuration
  Predictor configuration.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNReleaseConfiguration (FXNConfiguration* configuration);
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationRelease (FXNConfiguration* configuration);
 #pragma endregion
 
 

@@ -25,7 +25,7 @@ typedef struct FXNValueMap FXNValueMap;
 
 #pragma region --Lifecycle--
 /*!
- @function FXNCreateValueMap
+ @function FXNValueMapCreate
 
  @abstract Create a prediction value map.
 
@@ -34,10 +34,10 @@ typedef struct FXNValueMap FXNValueMap;
  @param map
  Created value map. Must not be `NULL`.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateValueMap (FXNValueMap** map);
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapCreate (FXNValueMap** map);
 
 /*!
- @function FXNReleaseValueMap
+ @function FXNValueMapRelease
 
  @abstract Release the prediction value map.
 
@@ -47,7 +47,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNCreateValueMap (FXNValueMap** map);
  @param map
  Prediction value map.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNReleaseValueMap (FXNValueMap* map);
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapRelease (FXNValueMap* map);
 #pragma endregion
 
 
