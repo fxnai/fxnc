@@ -17,7 +17,7 @@
 #ifdef _WIN64
     #define FXN_EXPORT __declspec(dllexport)
 #else
-    #define FXN_EXPORT
+    #define FXN_EXPORT __attribute__((visibility("default")))
 #endif
 
 #ifdef __EMSCRIPTEN__
