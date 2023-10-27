@@ -21,13 +21,19 @@
 */
 struct FXNPredictor;
 typedef struct FXNPredictor FXNPredictor;
+#pragma endregion
 
+
+#pragma region --Lifecycle--
 /*!
- @struct FXNPredictorCreateFunc
- 
- @abstract Predictor creation function.
+ @function FXNPredictorCreate
 
- @discussion Predictor creation function.
+ @abstract Create a predictor.
+
+ @discussion Create a predictor.
+
+ @param tag
+ Predictor tag.
 
  @param configuration
  Predictor configuration. Can be `NULL`.
@@ -35,29 +41,33 @@ typedef struct FXNPredictor FXNPredictor;
  @param predictor
  Created predictor. Must not be `NULL`.
 */
-typedef FXNStatus (*FXNPredictorCreateFunc) (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorCreate (
+    const char* tag,
     FXNConfiguration* configuration,
     FXNPredictor** predictor
 );
 
 /*!
- @struct FXNPredictorReleaseFunc
- 
- @abstract Predictor destruction function.
+ @function FXNPredictorRelease
 
- @discussion Predictor destruction function.
+ @abstract Release a predictor.
+
+ @discussion Release a predictor.
 
  @param predictor
  Predictor.
 */
-typedef FXNStatus (*FXNPredictorReleaseFunc) (FXNPredictor* predictor);
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predictor);
+#pragma endregion
 
+
+#pragma region --Operations--
 /*!
- @struct FXNPredictorPredictFunc
- 
- @abstract Prediction function.
+ @function FXNPredictorPredict
 
- @discussion Prediction function.
+ @abstract Make a prediction.
+
+ @discussion Make a prediction.
 
  @param predictor
  Predictor.
@@ -67,8 +77,9 @@ typedef FXNStatus (*FXNPredictorReleaseFunc) (FXNPredictor* predictor);
 
  @param outputs
  Prediction outputs. Must not be `NULL`.
+ You MUST release the value map with `FXNValueMapRelease` when no longer needed.
 */
-typedef FXNStatus (*FXNPredictorPredictFunc) (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
     FXNValueMap** outputs

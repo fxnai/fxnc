@@ -212,7 +212,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueGetDimensions (
  Destination shape array.
 
  @param shapeLen
- Length of the destination array.
+ Length of the destination array in elements.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueGetShape (
     FXNValue* value,
@@ -369,4 +369,16 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateBinary (
     FXNValueFlags flags,
     FXNValue** value
 );
+
+/*!
+ @function FXNValueCreateNull
+
+ @abstract Create a null value.
+ 
+ @discussion Create a null value.
+
+ @param value
+ Created value.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateNull (FXNValue** value);
 #pragma endregion
