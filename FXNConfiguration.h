@@ -83,6 +83,66 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationRelease (FXNConfiguratio
 
 #pragma region --Configuration--
 /*!
+ @function FXNConfigurationGetUniqueID
+
+ @abstract Get a configuration identifier.
+
+ @discussion Get a configuration identifier.
+
+ @param identifier
+ Predictor configuration identifier.
+
+ @param size
+ Identifier size.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetUniqueID (
+    char* identifier,
+    int32_t size
+);
+
+/*!
+ @function FXNConfigurationGetToken
+
+ @abstract Get the configuration token.
+
+ @discussion Get the configuration token.
+ This is requried for Function to load the predictor.
+
+ @param configuration
+ Predictor configuration.
+
+ @param token
+ Destination buffer.
+
+ @param size
+ Size of destination buffer.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetToken (
+    FXNConfiguration* configuration,
+    char* token,
+    int32_t size
+);
+
+/*!
+ @function FXNConfigurationSetToken
+
+ @abstract Set the configuration token.
+
+ @discussion Set the configuration token.
+ This is requried for Function to load the predictor.
+
+ @param configuration
+ Predictor configuration.
+
+ @param token
+ Configuration token.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetToken (
+    FXNConfiguration* configuration,
+    const char* token
+);
+
+/*!
  @function FXNConfigurationGetAcceleration
 
  @abstract Get the acceleration used for making predictions.
@@ -155,47 +215,5 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetDevice (
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetDevice (
     FXNConfiguration* configuration,
     void* device
-);
-
-/*!
- @function FXNCofigurationGetFingerprint
-
- @abstract Get the predictor fingerprint.
-
- @discussion Get the predictor fingerprint.
- This is used for caching and optimization.
-
- @param configuration
- Predictor configuration.
-
- @param fingerprint
- UTF-8 encoded fingerprint. Must not be `NULL`.
-
- @param size
- Size of fingerprint buffer.
-*/
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetFingerprint (
-    FXNConfiguration* configuration,
-    char* fingerprint,
-    int32_t size
-);
-
-/*!
- @function FXNCofigurationSetFingerprint
-
- @abstract Set the predictor fingerprint.
-
- @discussion Set the predictor fingerprint.
- This is used for caching and optimization.
-
- @param configuration
- Predictor configuration.
-
- @param fingerprint
- UTF-8 encoded fingerprint. Can be `NULL`.
-*/
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetFingerprint (
-    FXNConfiguration* configuration,
-    const char* fingerprint
 );
 #pragma endregion

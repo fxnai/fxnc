@@ -36,7 +36,7 @@ typedef struct FXNPredictor FXNPredictor;
  Predictor tag.
 
  @param configuration
- Predictor configuration. Can be `NULL`.
+ Predictor configuration. Must not be `NULL`.
 
  @param predictor
  Created predictor. Must not be `NULL`.
