@@ -28,16 +28,12 @@
  
  @constant FXN_ACCELERATION_NPU
  Use the neural processing unit.
- 
- @constant FXN_ACCELERATION_ALL
- Use all available acceleration methods including the CPU, GPU, and neural processing units.
 */
 enum FXNAcceleration {
     FXN_ACCELERATION_DEFAULT  = 0,
     FXN_ACCELERATION_CPU      = 1 << 0,
     FXN_ACCELERATION_GPU      = 1 << 1,
     FXN_ACCELERATION_NPU      = 1 << 2,
-    FXN_ACCELERATION_ALL      = FXN_ACCELERATION_CPU | FXN_ACCELERATION_GPU | FXN_ACCELERATION_NPU
 };
 typedef enum FXNAcceleration FXNAcceleration;
 #pragma endregion
