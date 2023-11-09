@@ -52,6 +52,24 @@ typedef struct FXNConfiguration FXNConfiguration;
 
 #pragma region --Lifecycle--
 /*!
+ @function FXNConfigurationGetUniqueID
+
+ @abstract Get a configuration identifier.
+
+ @discussion Get a configuration identifier.
+
+ @param identifier
+ Predictor configuration identifier.
+
+ @param size
+ Identifier size.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetUniqueID (
+    char* identifier,
+    int32_t size
+);
+
+/*!
  @function FXNConfigurationCreate
 
  @abstract Create a predictor configuration.
@@ -78,24 +96,6 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationRelease (FXNConfiguratio
 
 
 #pragma region --Configuration--
-/*!
- @function FXNConfigurationGetUniqueID
-
- @abstract Get a configuration identifier.
-
- @discussion Get a configuration identifier.
-
- @param identifier
- Predictor configuration identifier.
-
- @param size
- Identifier size.
-*/
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetUniqueID (
-    char* identifier,
-    int32_t size
-);
-
 /*!
  @function FXNConfigurationGetToken
 
