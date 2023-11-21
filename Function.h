@@ -14,3 +14,4 @@
 #include "FXNValueMap.h"
 #include "FXNConfiguration.h"
 #include "FXNPredictor.h"
+#include "FXNVersion.h"
