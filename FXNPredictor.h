@@ -9,6 +9,7 @@
 #pragma once
 
 #include "FXNConfiguration.h"
+#include "FXNProfile.h"
 #include "FXNValueMap.h"
 
 #pragma region --Types--
@@ -75,6 +76,10 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
  @param inputs
  Prediction inputs. Must not be `NULL`.
 
+ @param profile
+ Prediction profile. Can be `NULL`.
+ You MUST release the profile with `FXNProfileRelease` when no longer needed.
+
  @param outputs
  Prediction outputs. Must not be `NULL`.
  You MUST release the value map with `FXNValueMapRelease` when no longer needed.
@@ -82,6 +87,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
+    FXNProfile** profile,
     FXNValueMap** outputs
 );
 #pragma endregion
