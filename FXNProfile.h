@@ -41,6 +41,28 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileRelease (FXNProfile* profile);
 
 #pragma region --Operations--
 /*!
+ @function FXNProfileGetID
+
+ @abstract Get the prediction ID.
+
+ @discussion Get the prediction ID.
+
+ @param profile
+ Prediction profile.
+
+ @param destination
+ Destination buffer.
+
+ @param size
+ Destination buffer size.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileGetID (
+    FXNProfile* profile,
+    char* destination,
+    int32_t size
+);
+
+/*!
  @function FXNProfileGetLatency
 
  @abstract Get the prediction latency.
