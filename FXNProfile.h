@@ -91,25 +91,25 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileGetLatency (
  Prediction profile.
 
  @param error
- Destination buffer. Can be `NULL`.
+ Destination buffer.
 
- @param errorLen
- Size of destination buffer. Must NOT be `NULL`.
- When `error` is `NULL`, this contains the length of the `error` on return.
- When `error` is not `NULL`, this contains the number of characters written to `error`.
+ @param size
+ Destination buffer size.
+
+ @returns `FXN_OK` if an error has been copied. `FXN_ERROR_INVALID_OPERATION` if no error is present in the profile.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileGetError (
     FXNProfile* profile,
     char* error,
-    int32_t* errorLen
+    int32_t size
 );
 
 /*!
  @function FXNProfileGetLogs
 
- @abstract Get the prediction error.
+ @abstract Get the prediction logs.
 
- @discussion Get the prediction error.
+ @discussion Get the prediction logs.
 
  @param profile
  Prediction profile.
@@ -117,14 +117,30 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileGetError (
  @param logs
  Destination buffer.
 
- @param logsLen
- Size of destination buffer. Must NOT be `NULL`.
- When `logs` is `NULL`, this contains the length of the `logs` on return.
- When `logs` is not `NULL`, this contains the number of characters written to `logs`.
+ @param size
+ Destination buffer size.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileGetLogs (
     FXNProfile* profile,
     char* logs,
-    int32_t* logsLen
+    int32_t size
+);
+
+/*!
+ @function FXNProfileGetLogLength
+
+ @abstract Get the prediction log length.
+
+ @discussion Get the prediction log length.
+
+ @param profile
+ Prediction profile.
+
+ @param length
+ Logs length.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNProfileGetLogLength (
+    FXNProfile* profile,
+    int32_t* length
 );
 #pragma endregion
