@@ -37,10 +37,10 @@ typedef struct FXNPredictor FXNPredictor;
  Predictor tag.
 
  @param configuration
- Predictor configuration. Must not be `NULL`.
+ Predictor configuration. MUST NOT be `NULL`.
 
  @param predictor
- Created predictor. Must not be `NULL`.
+ Created predictor. MUST NOT be `NULL`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorCreate (
     const char* tag,
@@ -74,14 +74,14 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
  Predictor.
 
  @param inputs
- Prediction inputs. Must not be `NULL`.
+ Prediction inputs. MUST NOT be `NULL`.
 
  @param profile
  Prediction profile. Can be `NULL`.
  You MUST release the profile with `FXNProfileRelease` when no longer needed.
 
  @param outputs
- Prediction outputs. Must not be `NULL`.
+ Prediction outputs. MUST NOT be `NULL`.
  You MUST release the value map with `FXNValueMapRelease` when no longer needed.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (

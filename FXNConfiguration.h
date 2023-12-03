@@ -77,7 +77,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetUniqueID (
  @discussion Create a predictor configuration.
 
  @param configuration
- Created configuration. Must not be `NULL`.
+ Created configuration. MUST NOT be `NULL`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationCreate (FXNConfiguration** configuration);
 

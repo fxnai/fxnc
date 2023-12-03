@@ -32,7 +32,7 @@ typedef struct FXNValueMap FXNValueMap;
  @discussion Create a prediction value map.
 
  @param map
- Created value map. Must not be `NULL`.
+ Created value map. MUST NOT be `NULL`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapCreate (FXNValueMap** map);
 
@@ -63,7 +63,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapRelease (FXNValueMap* map);
  Prediction value map.
 
  @param size
- Output size. Must not be `NULL`.
+ Output size. MUST NOT be `NULL`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetSize (
     FXNValueMap* map,
@@ -110,7 +110,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetKey (
  Value key.
 
  @param value
- Output value. Must not be `NULL`.
+ Output value. MUST NOT be `NULL`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetValue (
     FXNValueMap* map,
