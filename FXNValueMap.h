@@ -111,6 +111,8 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetKey (
 
  @param value
  Output value. MUST NOT be `NULL`.
+
+ @returns `FXN_OK` if the value map contains a value for the given key else `FXN_ERROR_INVALID_ARGUMENT`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetValue (
     FXNValueMap* map,
