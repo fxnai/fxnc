@@ -335,6 +335,8 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateDict (
 
  @param value
  Created value.
+ The value `type` will be `FXN_DTYPE_IMAGE`.
+ The value `shape` will be `(H,W,4)`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateImage (
     const uint8_t* pixelBuffer,
