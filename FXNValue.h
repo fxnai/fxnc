@@ -319,7 +319,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateDict (
  @abstract Create an image value from a pixel buffer.
 
  @discussion Create an image value from a pixel buffer.
- The pixel buffer MUST have an interleaved RGBA8888 layout (32 bits per pixel).
+ The pixel buffer MUST have an interleaved R8 (8bpp), RGB888 (24bpp), or RGBA8888 layout (32bpp).
 
  @param pixelBuffer
  Pixel buffer.
@@ -330,18 +330,23 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateDict (
  @param height
  Pixel buffer height.
 
+ @param channels
+ Pixel buffer channels.
+ MUST be 1, 3, or 4.
+
  @param flags
  Value creation flags.
 
  @param value
  Created value.
  The value `type` will be `FXN_DTYPE_IMAGE`.
- The value `shape` will be `(H,W,4)`.
+ The value `shape` will be `(H,W,C)`.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateImage (
     const uint8_t* pixelBuffer,
     int32_t width,
     int32_t height,
+    int32_t channels,
     FXNValueFlags flags,
     FXNValue** value
 );
