@@ -15,61 +15,61 @@
 /*!
  @enum FXNDtype
 
- @abstract Parameter type.
+ @abstract Value data type.
 
  @constant FXN_DTYPE_NULL
- Type is `null` or undefined.
+ Value is `null` or undefined.
 
  @constant FXN_DTYPE_INT8
- Type is a `int8_t` in C/C++ and `sbyte` in C#.
+ Value is `int8_t` in C/C++ and `sbyte` in C#.
 
  @constant FXN_DTYPE_INT16
- Type is `int16_t` in C/C++ and `short` in C#.
+ Value is `int16_t` in C/C++ and `short` in C#.
 
  @constant FXN_DTYPE_INT32
- Type is `int32_t` in C/C++ and `int` in C#.
+ Value is `int32_t` in C/C++ and `int` in C#.
 
  @constant FXN_DTYPE_INT64
- Type is `int64_t` in C/C++ and `long` in C#.
+ Value is `int64_t` in C/C++ and `long` in C#.
 
  @constant FXN_DTYPE_UINT8
- Type is `uint8_t` in C/C++ and `byte` in C#.
+ Value is `uint8_t` in C/C++ and `byte` in C#.
 
  @constant FXN_DTYPE_UINT16
- Type is a `uint16_t` in C/C++ and `ushort` in C#.
+ Value is `uint16_t` in C/C++ and `ushort` in C#.
 
  @constant FXN_DTYPE_UINT32
- Type is a `uint32_t` in C/C++ and `uint` in C#.
+ Value is `uint32_t` in C/C++ and `uint` in C#.
 
  @constant FXN_DTYPE_UINT64
- Type is a `uint64_t` in C/C++ and `ulong` in C#.
+ Value is `uint64_t` in C/C++ and `ulong` in C#.
 
  @constant FXN_DTYPE_FLOAT16
- Type is a generic half-precision float.
+ Value is a generic half-precision float.
 
  @constant FXN_DTYPE_FLOAT32
- Type is `float` in C/C++/C#.
+ Value is `float` in C/C++/C#.
 
  @constant FXN_DTYPE_FLOAT64
- Type is `double` in C/C++/C#.
+ Value is `double` in C/C++/C#.
 
  @constant FXN_DTYPE_BOOL
- Type is a `bool` in C/C++/C#.
+ Value is `bool` in C/C++/C#.
 
  @constant FXN_DTYPE_STRING
- Type is `std::string` in C++ and `string` in C#.
+ Value is a UTF-8 encoded string.
 
  @constant FXN_DTYPE_LIST
- Type is a JSON-serializable list.
+ Value is a JSON-serializable list.
 
  @constant FXN_DTYPE_DICT
- Type is a JSON-serializable dictionary.
+ Value is a JSON-serializable dictionary.
 
  @constant FXN_DTYPE_IMAGE
- Type is an image pixel buffer. This MUST always be `RGBA8888` in memory.
+ Value is an image pixel buffer. This MUST always be interleaved by channel.
 
  @constant FXN_DTYPE_BINARY
- Type is a binary blob.
+ Value is a binary blob.
 */
 enum FXNDtype {
     FXN_DTYPE_NULL      = 0,
@@ -102,7 +102,7 @@ typedef enum FXNDtype FXNDtype;
  No flags.
 
  @constant FXN_VALUE_FLAG_COPY_DATA
- Copy input data when creating a value.
+ Copy input data when creating the value.
  When this flag is not set, the value data MUST remain valid for the lifetime of the created value.
 */
 enum FXNValueFlags {
@@ -117,10 +117,9 @@ typedef enum FXNValueFlags FXNValueFlags;
 /*!
  @struct FXNValue
  
- @abstract Predictor input or output value.
+ @abstract Prediction input or output value.
 
- @discussionPredictor input or output value.
- This is loosely based on `DLPack::DLTensor`.
+ @discussion Prediction input or output value.
 */
 struct FXNValue;
 typedef struct FXNValue FXNValue;
