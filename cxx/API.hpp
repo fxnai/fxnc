@@ -26,7 +26,7 @@ inline Configuration::Configuration (FXNConfiguration* value, bool owner) : conf
 
 }
 
-inline Configuration::Configuration(Configuration&& other) noexcept : configuration(other.configuration), owner(other.owner) {
+inline Configuration::Configuration (Configuration&& other) noexcept : configuration(other.configuration), owner(other.owner) {
     other.configuration = nullptr;
     other.owner = false;
 }
@@ -66,7 +66,7 @@ inline void Configuration::SetToken (const std::string& token) const {
 inline std::filesystem::path Configuration::GetResource (const std::string& id) const {
     std::string path;
     path.resize(4096);
-    FXNConfigurationGetResource(configuration, id.c_str(), path.c_str(), static_cast<int>(path.size()));
+    FXNConfigurationGetResource(configuration, id.c_str(), path.data(), static_cast<int>(path.size()));
     path.resize(strlen(path.c_str()));
     return std::filesystem::path(path);
 }
@@ -93,7 +93,7 @@ inline T* Configuration::GetDevice () const {
 }
 
 template<typename T>
-inline T* Configuration::SetDevice (T* device) const {
+inline void Configuration::SetDevice (T* device) const {
     FXNConfigurationSetDevice(configuration, device);
 }
 
@@ -211,11 +211,18 @@ inline int32_t Value::GetDimensions () const {
     return dimensions;
 }
 
-inline std::vector<int32_t>  Value::GetShape () const {
+inline std::vector<int32_t> Value::GetShape () const {
     int32_t dimensions = GetDimensions();
     std::vector<int32_t> shape(dimensions);
     FXNValueGetShape(value, shape.data(), dimensions);
     return shape;
+}
+
+inline FXNValue* Value::Release () {
+    auto v = value;
+    value = nullptr;
+    owner = false;
+    return v;
 }
 
 inline Value::operator FXNValue* () const {
@@ -264,6 +271,213 @@ inline Value Value::CreateNull () {
     FXNValueCreateNull(&fxnValue);
     return Value(fxnValue);
 }
+#pragma endregion
+
+
+#pragma region --ValueMap--
+
+inline ValueMap::ValueMap () {
+    FXNValueMapCreate(&map);
+    owner = true;
+}
+
+inline ValueMap::ValueMap (FXNValueMap* map, bool owner) : map(map), owner(owner) {
+
+}
+
+inline ValueMap::ValueMap (ValueMap&& other) noexcept : map(other.map), owner(other.owner) {
+    other.map = nullptr;
+    other.owner = false;
+}
+
+inline ValueMap::~ValueMap () {
+    if (owner)
+        FXNValueMapRelease(map);
+}
+
+inline ValueMap& ValueMap::operator= (ValueMap&& other) noexcept {
+    // Check
+    if (this == &other)
+        return *this;
+    // Move
+    if (owner)
+        FXNValueMapRelease(map);
+    map = other.map;
+    owner = other.owner;
+    other.map = nullptr;
+    other.owner = false;
+    // Return
+    return *this;
+}
+
+inline bool ValueMap::Contains (const std::string& key) const {
+    bool contains = false;
+    FXNValueMapContainsKey(map, key.c_str(), &contains);
+    return contains;
+}
+
+inline size_t ValueMap::Size () const {
+    int size = 0;
+    FXNValueMapGetSize(map, &size);
+    return size;
+}
+
+inline void ValueMap::Remove (const std::string& key) const {
+    FXNValueMapSetValue(map, key.c_str(), nullptr);
+}
+
+inline ValueMap::Proxy ValueMap::operator[] (const std::string& key) const {
+    return Proxy(*this, key);
+}
+
+inline ValueMap::Iterator ValueMap::begin () const {
+    return Iterator(*this, 0);
+}
+
+inline ValueMap::Iterator ValueMap::end () const {
+    return Iterator(*this, Size());
+}
+
+inline ValueMap::operator FXNValueMap* () const {
+    return map;
+}
+
+inline ValueMap::Proxy::Proxy (const ValueMap& map, const std::string& key) : map(map), key(key) {
+
+}
+
+inline Value ValueMap::Proxy::Get () const {
+    FXNValue* value = nullptr;
+    auto status = FXNValueMapGetValue(map, key.c_str(), &value);
+    FXN_ASSERT_THROW(status == FXN_OK, "Value map does not contain a value for key `{}`", key);
+    return Value(value);
+}
+
+template<>
+inline float ValueMap::Proxy::Get<float>() const {
+    auto value = Get();
+    auto type = value.GetType();
+    auto shape = value.GetShape();
+    FXN_ASSERT_THROW(type == FXN_DTYPE_FLOAT32, "Value map value for key `{}` with type {} cannot be cast to float", key, type);
+    FXN_ASSERT_THROW(shape.size() == 0, "Value map value for key `{}` cannot be cast to float because it is not scalar", key);
+    return *value.GetData<float>();
+}
+
+template<>
+inline double ValueMap::Proxy::Get<double>() const {
+    auto value = Get();
+    auto type = value.GetType();
+    auto shape = value.GetShape();
+    FXN_ASSERT_THROW(type == FXN_DTYPE_FLOAT64, "Value map value for key `{}` with type {} cannot be cast to double", key, type);
+    FXN_ASSERT_THROW(shape.size() == 0, "Value map value for key `{}` cannot be cast to double because it is not scalar", key);
+    return *value.GetData<double>();
+}
+
+template<>
+inline int32_t ValueMap::Proxy::Get<int32_t>() const {
+    auto value = Get();
+    auto type = value.GetType();
+    auto shape = value.GetShape();
+    FXN_ASSERT_THROW(type == FXN_DTYPE_INT32, "Value map value for key `{}` with type {} cannot be cast to integer", key, type);
+    FXN_ASSERT_THROW(shape.size() == 0, "Value map value for key `{}` cannot be cast to integer because it is not scalar", key);
+    return *value.GetData<int32_t>();
+}
+
+template<>
+inline std::string ValueMap::Proxy::Get<std::string>() const {
+    auto value = Get();
+    auto type = value.GetType();
+    FXN_ASSERT_THROW(type == FXN_DTYPE_STRING, "Value map value for key `{}` with type {} cannot be cast to string", key, type);
+    return std::string(value.GetData<char>());
+}
+
+inline ValueMap::Proxy::operator Value () const {
+    return Get();
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (float input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (double input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (int8_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (int16_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (int32_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (int64_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (uint8_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (uint16_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (uint32_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (uint64_t input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (bool input) const {
+    auto value = Value::CreateArray(&input, {}, FXN_VALUE_FLAG_COPY_DATA);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (const std::string& input) const {
+    auto value = Value::CreateString(input);
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (std::nullptr_t) const {
+    auto value = Value::CreateNull();
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
+inline const ValueMap::Proxy& ValueMap::Proxy::operator= (Value&& value) const {
+    FXNValueMapSetValue(map, key.c_str(), value.Release());
+    return *this;
+}
+
 #pragma endregion
 
 }
