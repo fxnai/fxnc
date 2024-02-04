@@ -17,7 +17,7 @@ namespace Function {
 
 #pragma region --Configuration--
 
-inline Configuration::Configuration () {
+inline Configuration::Configuration () : configuration(nullptr) {
     FXNConfigurationCreate(&configuration);
     owner = true;
 }
@@ -76,7 +76,7 @@ inline void Configuration::SetResource (const std::string& id, const std::filesy
 }
 
 inline FXNAcceleration Configuration::GetAcceleration () const {
-    FXNAcceleration acceleration;
+    FXNAcceleration acceleration = FXN_ACCELERATION_DEFAULT;
     FXNConfigurationGetAcceleration(configuration, &acceleration);
     return acceleration;
 }
@@ -166,6 +166,7 @@ inline Value::Value (FXNValue* value, bool owner) : value(value), owner(owner) {
 
 inline Value::Value (Value&& other) noexcept : value(other.value) {
     other.value = nullptr;
+    other.owner = false;
 }
 
 inline Value::~Value () {
@@ -189,7 +190,7 @@ inline Value& Value::operator= (Value&& other) noexcept {
 }
 
 inline void* Value::GetData () const {
-    void* data;
+    void* data = nullptr;
     FXNValueGetData(value, &data);
     return data;
 }
@@ -231,43 +232,43 @@ inline Value::operator FXNValue* () const {
 
 template<typename T>
 inline Value Value::CreateArray (T* data, const std::vector<int32_t>& shape, FXNValueFlags flags) {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateArray(data, shape.data(), static_cast<int32_t>(shape.size()), ToFXNDtype<T>::type, flags, &fxnValue);
     return Value(fxnValue);
 }
 
 inline Value Value::CreateString (const std::string& str) {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateString(str.c_str(), &fxnValue);
     return Value(fxnValue);
 }
 
 inline Value Value::CreateList (const std::string& jsonList) {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateList(jsonList.c_str(), &fxnValue);
     return Value(fxnValue);
 }
 
 inline Value Value::CreateDict (const std::string& jsonDict) {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateDict(jsonDict.c_str(), &fxnValue);
     return Value(fxnValue);
 }
 
 inline Value Value::CreateImage (const uint8_t* pixelBuffer, int32_t width, int32_t height, int32_t channels, FXNValueFlags flags) {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateImage(pixelBuffer, width, height, channels, flags, &fxnValue);
     return Value(fxnValue);
 }
 
 inline Value Value::CreateBinary (void* buffer, int64_t bufferLen, FXNValueFlags flags) {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateBinary(buffer, bufferLen, flags, &fxnValue);
     return Value(fxnValue);
 }
 
 inline Value Value::CreateNull () {
-    FXNValue* fxnValue;
+    FXNValue* fxnValue = nullptr;
     FXNValueCreateNull(&fxnValue);
     return Value(fxnValue);
 }
@@ -276,7 +277,7 @@ inline Value Value::CreateNull () {
 
 #pragma region --ValueMap--
 
-inline ValueMap::ValueMap () {
+inline ValueMap::ValueMap () : map(nullptr) {
     FXNValueMapCreate(&map);
     owner = true;
 }
