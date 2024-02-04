@@ -194,6 +194,6 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
 
 #pragma region --Operator Constants--
 #define FXN_LIBRARY_NO_INCLUDE ""
-#define FXN_KWARG_MODEL_PATH "model_path"
 #define FXN_KWARG_MODEL_CONFIGURATION "model_configuration"
+#define FXN_MODEL_RESOURCE_KEY "model_resource"
 #pragma endregion
