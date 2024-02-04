@@ -200,13 +200,13 @@ inline T* Value::GetData () const {
 }
 
 inline FXNDtype Value::GetType () const {
-    FXNDtype type;
+    FXNDtype type = FXN_DTYPE_NULL;
     FXNValueGetType(value, &type);
     return type;
 }
 
 inline int32_t Value::GetDimensions () const {
-    int32_t dimensions;
+    int32_t dimensions = 0;
     FXNValueGetDimensions(value, &dimensions);
     return dimensions;
 }
