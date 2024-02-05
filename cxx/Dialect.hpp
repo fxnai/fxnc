@@ -25,32 +25,68 @@
  @constant FXN_PLATFORM_UNKNOWN
  Unknown platform.
 
+ @constant FXN_PLATFORM_ANDROID_ARM
+ Android armeabi-v7a platform.
+
+ @constant FXN_PLATFORM_ANDROID_ARM64
+ Android arm64-v8a platform.
+
+ @constant FXN_PLATFORM_ANDROID_X86
+ Android x86 platform.
+
+ @constant FXN_PLATFORM_ANDROID_X64
+ Android x86_64 platform.
+
  @constant FXN_PLATFORM_ANDROID
- Android platform.
+ Android platform across all ABIs.
 
  @constant FXN_PLATFORM_IOS
  iOS platform.
  
+ @constant FXN_PLATFORM_MACOS_X64
+ macOS x86_64 platform.
+
+ @constant FXN_PLATFORM_MACOS_ARM64
+ macOS arm64 platform.
+
  @constant FXN_PLATFORM_MACOS
- macOS platform.
+ macOS platform across all ABIs.
+
+ @constant FXN_PLATFORM_LINUX_X64
+ Linux x86_64 platform.
+
+ @constant FXN_PLATFORM_LINUX_ARM64
+ Linux arm64 platform.
 
  @constant FXN_PLATFORM_LINUX
- Linux platform.
+ Linux platform across all ABIs.
 
  @constant FXN_PLATFORM_WASM
  WebAssembly platform.
 
+ @constant FXN_PLATFORM_WINDOWS_X64
+ Windows x86_64 platform.
+
  @constant FXN_PLATFORM_WINDOWS
- Windows platform.
+ Windows platform across all ABIs.
 */
 enum FXNPlatform {
-    FXN_PLATFORM_UNKNOWN    = 0,
-    FXN_PLATFORM_ANDROID    = 1 << 0,
-    FXN_PLATFORM_IOS        = 1 << 1,
-    FXN_PLATFORM_MACOS      = 1 << 2,
-    FXN_PLATFORM_LINUX      = 1 << 3,
-    FXN_PLATFORM_WASM       = 1 << 4,
-    FXN_PLATFORM_WINDOWS    = 1 << 5,
+    FXN_PLATFORM_UNKNOWN        = 0,
+    FXN_PLATFORM_ANDROID_ARM    = 1 << 0,
+    FXN_PLATFORM_ANDROID_ARM64  = 1 << 1,
+    FXN_PLATFORM_ANDROID_X86    = 1 << 2,
+    FXN_PLATFORM_ANDROID_X64    = 1 << 3,
+    FXN_PLATFORM_ANDROID        = FXN_PLATFORM_ANDROID_ARM | FXN_PLATFORM_ANDROID_ARM64 | FXN_PLATFORM_ANDROID_X86 | FXN_PLATFORM_ANDROID_X64,
+    FXN_PLATFORM_IOS            = 1 << 4,
+    FXN_PLATFORM_MACOS_X64      = 1 << 5,
+    FXN_PLATFORM_MACOS_ARM64    = 1 << 6,
+    FXN_PLATFORM_MACOS          = FXN_PLATFORM_MACOS_X64 | FXN_PLATFORM_MACOS_ARM64,
+    FXN_PLATFORM_LINUX_X64      = 1 << 7,
+    FXN_PLATFORM_LINUX_ARM64    = 1 << 8,
+    FXN_PLATFORM_LINUX          = FXN_PLATFORM_LINUX_X64 | FXN_PLATFORM_LINUX_ARM64,
+    FXN_PLATFORM_WASM           = 1 << 9,
+    FXN_PLATFORM_WINDOWS_X64    = 1 << 10,
+    FXN_PLATFORM_WINDOWS        = FXN_PLATFORM_WINDOWS_X64,
 };
 typedef enum FXNPlatform FXNPlatform;
 
