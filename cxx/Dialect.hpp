@@ -173,7 +173,7 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
  @discussion Specify which platforms the operator is supported on.
 
  @param platform
- Supported platforms. Use `|` to specify multiple platforms.
+ Supported platform(s). Use `|` to specify multiple platforms.
 */
 #define FXN_OP_PLATFORM(platform)
 
@@ -185,13 +185,13 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
  @param target
  Target to link against when compiling the predictor. This is usually the name of a library or framework.
 
- @param include
- CMake include definition for defining the `target`. Pass `FXN_LIBRARY_NO_INCLUDE` if there is no include.
-
  @param platform
  Specify the platform that this library dependency applies to.
+
+ @param include
+ CMake include definition for defining the `target`. Pass `FXN_LIBRARY_NO_INCLUDE` if there is no include.
 */
-#define FXN_OP_LIBRARY(target,include,platform)
+#define FXN_OP_LIBRARY(target,platform,include)
 
 /*!
  @abstract Operator metadata.
