@@ -20,7 +20,7 @@
 /*!
  @enum FXNPlatform
 
- @abstract Current platform.
+ @abstract Function deployment platform.
 
  @constant FXN_PLATFORM_UNKNOWN
  Unknown platform.
@@ -190,6 +190,9 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
 
  @param include
  CMake include definition for defining the `target`. Pass `FXN_LIBRARY_NO_INCLUDE` if there is no include.
+ 
+ @see FXNPlatform
+ @see FXN_LIBRARY_NO_INCLUDE
 */
 #define FXN_OP_LIBRARY(target,platform,include)
 
@@ -229,7 +232,37 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
 
 
 #pragma region --Operator Constants--
+/*!
+ @abstract Operator library has no CMake include.
+
+ @discussion Use this to specify when an operator library has no CMake include file.
+ This is usually the case when linking against system libraries.
+
+ @see FXN_OP_LIBRARY
+*/
 #define FXN_LIBRARY_NO_INCLUDE ""
-#define FXN_KWARG_MODEL_CONFIGURATION "model_configuration"
-#define FXN_MODEL_RESOURCE_KEY "model_resource"
+
+/*!
+ @abstract Predictor configuration keyword argument.
+
+ @discussion Use this to bind an operator constructor argument to the predictor configuration provided by the user.
+ The constructor argument being bound must have type `FXNConfiguration*` or `Function::Configuration`.
+
+ @see FXN_OP_KWARG
+ @see FXNConfiguration
+ @see Function::Configuration
+*/
+#define FXN_KWARG_PREDICTOR_CONFIGURATION "configuration"
+
+/*!
+ @abstract Model path keyword argument for inference operators.
+
+ @discussion Use this to bind an operator constructor argument to the model path.
+ The constructor argument being bound must have type `const char*` or `std::filesystem::path`.
+ This keyword argument can only be used in inference operators.
+
+ @see FXN_OP_KWARG
+ @see FXN_INFERENCE_OP
+*/
+#define FXN_KWARG_MODEL_PATH "model_path"
 #pragma endregion
