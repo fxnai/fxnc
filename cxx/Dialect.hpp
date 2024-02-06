@@ -258,7 +258,7 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
  @abstract Model path keyword argument for inference operators.
 
  @discussion Use this to bind an operator constructor argument to the model path.
- The constructor argument being bound must have type `const char*` or `std::filesystem::path`.
+ The constructor argument being bound must have type `const char*`, `std::string`, or `std::filesystem::path`.
  This keyword argument can only be used in inference operators.
 
  @see FXN_OP_KWARG
