@@ -90,6 +90,21 @@ enum FXNPlatform {
 };
 typedef enum FXNPlatform FXNPlatform;
 
+#ifndef FXN_CURRENT_PLATFORM
+/*!
+ @abstract Current Function platform being compiled for.
+
+ @discussion Use this to perform conditional compilation depending on a specific platform.
+
+ @see FXNPlatform
+*/
+#define FXN_CURRENT_PLATFORM FXN_PLATFORM_UNKNOWN
+#endif
+#pragma endregion
+
+
+#pragma region --Inference--
+
 /*!
  @enum FXNInferenceFormat
 
