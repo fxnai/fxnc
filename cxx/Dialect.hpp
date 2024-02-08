@@ -252,7 +252,7 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
  @see FXNConfiguration
  @see Function::Configuration
 */
-#define FXN_KWARG_PREDICTOR_CONFIGURATION "configuration"
+#define FXN_KWARG_PREDICTOR_CONFIGURATION "fxn_configuration"
 
 /*!
  @abstract Model path keyword argument for inference operators.
@@ -264,5 +264,5 @@ typedef enum FXNInferenceFormat FXNInferenceFormat;
  @see FXN_OP_KWARG
  @see FXN_INFERENCE_OP
 */
-#define FXN_KWARG_MODEL_PATH "model_path"
+#define FXN_KWARG_MODEL_PATH "fxn_model_path"
 #pragma endregion

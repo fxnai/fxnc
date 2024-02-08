@@ -167,7 +167,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetResource (
 );
 
 /*!
- @function FXNConfigurationGetResource
+ @function FXNConfigurationSetResource
 
  @abstract Set a predictor resource.
 
@@ -179,12 +179,16 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetResource (
  @param id
  Resource identifier.
 
+ @param type
+ Resource type.
+
  @param path
  Resource path. Passing `NULL` will remove the resource from the configuration.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetResource (
     FXNConfiguration* configuration,
     const char* id,
+    const char* type,
     const char* path
 );
 
