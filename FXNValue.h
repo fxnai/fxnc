@@ -231,6 +231,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueGetShape (
 
  @param data
  Array data.
+ Can be `NULL` in which case the value will allocate its own memory.
 
  @param shape
  Array shape.

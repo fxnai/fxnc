@@ -71,6 +71,18 @@ namespace Function {
         operator FXNValue* () const;
 
         /*!
+         @abstract Create an array value.
+
+         @discussion The value will allocate its own data.
+
+         @param shape
+         Array shape.
+         This should be empty for scalar values.
+        */
+        template<typename T>
+        static Value CreateArray (const std::vector<int32_t>& shape);
+
+        /*!
          @abstract Create an array value from a data buffer.
 
          @param data

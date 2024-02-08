@@ -71,8 +71,8 @@ inline std::filesystem::path Configuration::GetResource (const std::string& id) 
     return std::filesystem::path(path);
 }
 
-inline void Configuration::SetResource (const std::string& id, const std::filesystem::path& path) const {
-    FXNConfigurationSetResource(configuration, id.c_str(), path.c_str());
+inline void Configuration::SetResource (const std::string& id, const std::string& type, const std::filesystem::path& path) const {
+    FXNConfigurationSetResource(configuration, id.c_str(), type.c_str(), path.c_str());
 }
 
 inline FXNAcceleration Configuration::GetAcceleration () const {
@@ -85,11 +85,15 @@ inline void Configuration::SetAcceleration (FXNAcceleration acceleration) const 
     FXNConfigurationSetAcceleration(configuration, acceleration);
 }
 
-template<typename T>
-inline T* Configuration::GetDevice () const {
+inline void* Configuration::GetDevice () const {
     void* device = nullptr;
     FXNConfigurationGetDevice(configuration, &device);
-    return static_cast<T*>(device);
+    return device;
+}
+
+template<typename T>
+inline T* Configuration::GetDevice () const {
+    return static_cast<T*>(GetDevice());
 }
 
 template<typename T>
@@ -231,6 +235,11 @@ inline Value::operator FXNValue* () const {
 }
 
 template<typename T>
+inline Value Value::CreateArray (const std::vector<int32_t>& shape) {
+    return CreateArray<T>(nullptr, shape, FXN_VALUE_FLAG_NONE);
+}
+
+template<typename T>
 inline Value Value::CreateArray (T* data, const std::vector<int32_t>& shape, FXNValueFlags flags) {
     FXNValue* fxnValue = nullptr;
     FXNValueCreateArray(data, shape.data(), static_cast<int32_t>(shape.size()), ToFXNDtype<T>::type, flags, &fxnValue);
@@ -336,7 +345,7 @@ inline ValueMap::Iterator ValueMap::begin () const {
 }
 
 inline ValueMap::Iterator ValueMap::end () const {
-    return Iterator(*this, Size());
+    return Iterator(*this, static_cast<int>(Size()));
 }
 
 inline ValueMap::operator FXNValueMap* () const {

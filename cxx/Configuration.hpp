@@ -37,11 +37,13 @@ namespace Function {
 
         std::filesystem::path GetResource (const std::string& id) const;
 
-        void SetResource (const std::string& id, const std::filesystem::path& path) const;
+        void SetResource (const std::string& id, const std::string& type, const std::filesystem::path& path) const;
 
         FXNAcceleration GetAcceleration () const;
 
         void SetAcceleration (FXNAcceleration acceleration) const;
+
+        void* GetDevice () const;
 
         template<typename T>
         T* GetDevice () const;
