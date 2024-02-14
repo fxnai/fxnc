@@ -22,8 +22,6 @@
 
 #ifdef __EMSCRIPTEN__
     #define FXN_API EMSCRIPTEN_KEEPALIVE
-#elif defined(_WIN64)
-    #define FXN_API APIENTRY
 #else
     #define FXN_API
 #endif
