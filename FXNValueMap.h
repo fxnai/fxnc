@@ -98,28 +98,6 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetKey (
 );
 
 /*!
- @function FXNValueMapContainsKey
-
- @abstract Check whether the value map contains a key.
-
- @discussion Check whether the value map contains a key.
-
- @param map
- Prediction value map.
-
- @param key
- Value key.
-
- @param result
- Whether the value map contains the key.
-*/
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapContainsKey (
-    FXNValueMap* map,
-    const char* key,
-    bool* result
-);
-
-/*!
  @function FXNValueMapGetValue
 
  @abstract Get the value for a given key in the value map.

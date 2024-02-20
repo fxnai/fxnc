@@ -139,60 +139,6 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetToken (
 );
 
 /*!
- @function FXNConfigurationGetResource
-
- @abstract Get a predictor resource.
-
- @discussion Get a predictor resource.
-
- @param configuration
- Predictor configuration.
-
- @param id
- Resource identifier.
-
- @param path
- Resource path.
-
- @param pathLen
- Length of `path` buffer.
-
- @returns `FXN_OK` if the resource exists. `FXN_ERROR_INVALID_ARGUMENT` if the resource does not exist.
-*/
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetResource (
-    FXNConfiguration* configuration,
-    const char* id,
-    char* path,
-    int32_t pathLen
-);
-
-/*!
- @function FXNConfigurationSetResource
-
- @abstract Set a predictor resource.
-
- @discussion Set a predictor resource.
-
- @param configuration
- Predictor configuration.
-
- @param id
- Resource identifier.
-
- @param type
- Resource type.
-
- @param path
- Resource path. Passing `NULL` will remove the resource from the configuration.
-*/
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetResource (
-    FXNConfiguration* configuration,
-    const char* id,
-    const char* type,
-    const char* path
-);
-
-/*!
  @function FXNConfigurationGetAcceleration
 
  @abstract Get the acceleration used for making predictions.
@@ -265,5 +211,27 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetDevice (
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetDevice (
     FXNConfiguration* configuration,
     void* device
+);
+
+/*!
+ @function FXNConfigurationSetResource
+
+ @abstract Add a prediction resource.
+
+ @discussion Add a prediction resource.
+
+ @param configuration
+ Predictor configuration.
+
+ @param type
+ Resource type.
+
+ @param path
+ Resource path.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationAddResource (
+    FXNConfiguration* configuration,
+    const char* type,
+    const char* path
 );
 #pragma endregion

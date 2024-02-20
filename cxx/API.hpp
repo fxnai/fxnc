@@ -13,6 +13,10 @@
 #include "Configuration.hpp"
 #include "Value.hpp"
 
+#ifdef _WIN64
+    #include <windows.h>
+#endif
+
 namespace Function {
 
 #pragma region --Configuration--
@@ -63,18 +67,6 @@ inline void Configuration::SetToken (const std::string& token) const {
     FXNConfigurationSetToken(configuration, token.c_str());
 }
 
-inline std::filesystem::path Configuration::GetResource (const std::string& id) const {
-    std::string path;
-    path.resize(4096);
-    FXNConfigurationGetResource(configuration, id.c_str(), path.data(), static_cast<int>(path.size()));
-    path.resize(strlen(path.c_str()));
-    return std::filesystem::path(path);
-}
-
-inline void Configuration::SetResource (const std::string& id, const std::string& type, const std::filesystem::path& path) const {
-    FXNConfigurationSetResource(configuration, id.c_str(), type.c_str(), path.c_str());
-}
-
 inline FXNAcceleration Configuration::GetAcceleration () const {
     FXNAcceleration acceleration = FXN_ACCELERATION_DEFAULT;
     FXNConfigurationGetAcceleration(configuration, &acceleration);
@@ -99,6 +91,19 @@ inline T* Configuration::GetDevice () const {
 template<typename T>
 inline void Configuration::SetDevice (T* device) const {
     FXNConfigurationSetDevice(configuration, device);
+}
+
+inline void Configuration::AddResource (const std::string& type, const std::filesystem::path& path) const {
+    #ifdef _WIN32
+    std::wstring wide_path_str = path.wstring();
+    int utf8_size = WideCharToMultiByte(CP_UTF8, 0, wide_path_str.c_str(), -1, nullptr, 0, nullptr, nullptr);
+    std::string utf8_path_str(utf8_size, 0);
+    WideCharToMultiByte(CP_UTF8, 0, wide_path_str.c_str(), -1, &utf8_path_str[0], utf8_size, nullptr, nullptr);
+    utf8_path_str.resize(utf8_size - 1);
+    #else
+    std::string utf8_path_str = path.string();
+    #endif
+    FXNConfigurationAddResource(configuration, type.c_str(), utf8_path_str.c_str());
 }
 
 inline Configuration::operator FXNConfiguration* () const {
@@ -321,9 +326,8 @@ inline ValueMap& ValueMap::operator= (ValueMap&& other) noexcept {
 }
 
 inline bool ValueMap::Contains (const std::string& key) const {
-    bool contains = false;
-    FXNValueMapContainsKey(map, key.c_str(), &contains);
-    return contains;
+    FXNValue* value = nullptr;
+    return FXNValueMapGetValue(map, key.c_str(), &value) == FXN_OK;
 }
 
 inline size_t ValueMap::Size () const {

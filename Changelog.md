@@ -1,3 +1,9 @@
+## 0.0.4
++ Added `FXNConfigurationAddResource` function.
++ Removed `FXNConfigurationGetResource` function.
++ Removed `FXNConfigurationSetResource` function.
++ Removed `FXNValueMapContainsKey` function. Use `FXNValueMapGetValue` function instead.
+
 ## 0.0.3
 + Added `FXNValueMapContainsKey` to check whether a given key is present in a value map.
 

@@ -35,10 +35,6 @@ namespace Function {
 
         void SetToken (const std::string& token) const;
 
-        std::filesystem::path GetResource (const std::string& id) const;
-
-        void SetResource (const std::string& id, const std::string& type, const std::filesystem::path& path) const;
-
         FXNAcceleration GetAcceleration () const;
 
         void SetAcceleration (FXNAcceleration acceleration) const;
@@ -50,6 +46,8 @@ namespace Function {
 
         template<typename T>
         void SetDevice (T* device) const;
+
+        void AddResource (const std::string& type, const std::filesystem::path& path) const;
 
         operator FXNConfiguration* () const;
 
