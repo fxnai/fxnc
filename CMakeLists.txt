@@ -4,6 +4,7 @@ project(Function)
 # Settings
 set(FXN_VERSION "0.0.3")
 set(FXN_PLATFORM "" CACHE STRING "Specify the target Function platform and architecture")
+option(FXN_INFER_PLATFORM "Automatically infer Function platform for `CMAKE_SYSTEM_NAME` and current architecture." OFF)
 set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_ANDROID_ARM"
     "FXN_PLATFORM_ANDROID_ARM64"
@@ -17,6 +18,48 @@ set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_WASM"
     "FXN_PLATFORM_WINDOWS_X64"
 )
+
+# Infer platform
+if(FXN_INFER_PLATFORM)
+    if(CMAKE_SYSTEM_NAME STREQUAL "ANDROID")
+        if (ANDROID_ABI STREQUAL "armeabi-v7a")
+            set(FXN_PLATFORM "FXN_PLATFORM_ANDROID_ARM")
+        elseif(ANDROID_ABI STREQUAL "arm64-v8a")
+            set(FXN_PLATFORM "FXN_PLATFORM_ANDROID_ARM64")
+        elseif(ANDROID_ABI STREQUAL "x86")
+            set(FXN_PLATFORM "FXN_PLATFORM_ANDROID_X86")
+        elseif(ANDROID_ABI STREQUAL "x86_64")
+            set(FXN_PLATFORM "FXN_PLATFORM_ANDROID_X64")
+        else()
+            message(FATAL_ERROR "Failed to infer Function platform because of unsupported Android ABI: ${ANDROID_ABI}")
+        endif()
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        # Ensure CMAKE_OSX_ARCHITECTURES is set and not empty
+        if(NOT CMAKE_OSX_ARCHITECTURES)
+            message(FATAL_ERROR "Failed to infer Function platform because `CMAKE_OSX_ARCHITECTURES` is not set. Please specify the target architecture.")
+        endif()
+        # Get the first value from CMAKE_OSX_ARCHITECTURES
+        # This technically doesn't matter because we compile a fat binary for macOS
+        list(GET CMAKE_OSX_ARCHITECTURES 0 osx_arch)
+        if(osx_arch STREQUAL "x86_64")
+            set(FXN_PLATFORM "FXN_PLATFORM_MACOS_X64")
+        elseif(osx_arch STREQUAL "arm64")
+            set(FXN_PLATFORM "FXN_PLATFORM_MACOS_ARM64")
+        else()
+            message(FATAL_ERROR "Failed to infer Function platform because of unsupported architecture: ${osx_arch}")
+        endif()
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+        set(FXN_PLATFORM "FXN_PLATFORM_WASM")
+    elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        if(CMAKE_GENERATOR_PLATFORM MATCHES "x64")
+            set(FXN_PLATFORM "FXN_PLATFORM_WINDOWS_X64")
+        else()
+            message(FATAL_ERROR "Failed to infer Function platform because of unsupported architecture: ${CMAKE_GENERATOR_PLATFORM}")
+        endif()
+    else()
+        message(FATAL_ERROR "Failed to infer Function platform because on unsupported system: ${CMAKE_SYSTEM_NAME}")
+    endif()
+endif()
 
 # Check platform
 if(FXN_PLATFORM STREQUAL "")
