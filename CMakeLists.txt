@@ -67,35 +67,35 @@ endif()
 
 # Download library
 file(MAKE_DIRECTORY ${FXN_LIB_DIR})
-if (NOT EXISTS ${FXN_LIB_PATH})
-    message(STATUS "Downloading ${FXN_LIB_NAME} from ${FXN_LIB_URL}")
-    file(DOWNLOAD
-        ${FXN_LIB_URL} ${FXN_LIB_PATH}
-        TLS_VERIFY ON
-        TIMEOUT 60
-        RESULT_VARIABLE fxn_download_result
-        STATUS_VARIABLE fxn_download_status
-        LOG fxn_download_log
-    )
-endif()
-if(NOT fxn_download_result EQUAL 0)
-    message(FATAL_ERROR "Function library download failed: ${fxn_download_status}\nLog: ${fxn_download_log}")
+message(STATUS "Downloading ${FXN_LIB_NAME} from ${FXN_LIB_URL}")
+file(DOWNLOAD
+    ${FXN_LIB_URL} ${FXN_LIB_PATH}
+    TLS_VERIFY ON
+    TIMEOUT 60
+    STATUS fxn_download_status
+    LOG fxn_download_log
+)
+list(GET fxn_download_status 0 fxn_download_status_code)
+list(GET fxn_download_status 1 fxn_download_error_message)
+if(NOT ${fxn_download_status_code} STREQUAL "0")
+    message(FATAL_ERROR "Function library download failed: ${fxn_download_error_message}\nLog: ${fxn_download_log}")
 endif()
 
-# Download the import library for Windows, if applicable
-if (DEFINED FXN_IMPLIB_URL AND NOT EXISTS ${FXN_IMPLIB_PATH})
+# Download the import library for Windows
+if (DEFINED FXN_IMPLIB_URL)
     message(STATUS "Downloading ${FXN_IMPLIB_NAME} from ${FXN_IMPLIB_URL}")
     file(DOWNLOAD
         ${FXN_IMPLIB_URL} ${FXN_IMPLIB_PATH}
         TLS_VERIFY ON
         TIMEOUT 60
-        RESULT_VARIABLE fxn_implib_download_result
-        STATUS_VARIABLE fxn_implib_download_status
+        STATUS fxn_implib_download_status
         LOG fxn_implib_download_log
     )
-endif()
-if(NOT fxn_implib_download_result EQUAL 0)
-    message(FATAL_ERROR "Function implementation library download failed: ${fxn_implib_download_status}\nLog: ${fxn_implib_download_log}")
+    list(GET fxn_download_status 0 fxn_implib_download_status_code)
+    list(GET fxn_download_status 1 fxn_implib_download_error_message)
+    if(NOT ${fxn_implib_download_status_code} STREQUAL "0")
+        message(FATAL_ERROR "Function implementation library download failed: ${fxn_implib_download_error_message}\nLog: ${fxn_implib_download_log}")
+    endif()
 endif()
 
 # Define target
