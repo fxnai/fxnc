@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(Function)
 
 # Settings
-set(FXN_VERSION "0.0.4")
+set(FXN_VERSION "0.0.5")
 set(FXN_PLATFORM "FXN_PLATFORM_AUTO" CACHE STRING "Specify the target Function platform and architecture")
 set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_AUTO"
