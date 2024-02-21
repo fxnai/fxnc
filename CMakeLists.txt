@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.20)
 project(Function)
 
 # Settings
@@ -85,9 +85,10 @@ if (DEFINED FXN_IMPLIB_URL AND NOT EXISTS ${FXN_IMPLIB_PATH})
 endif()
 
 # Define target
-add_library(Function SHARED IMPORTED GLOBAL)
-target_include_directories(Function INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set_target_properties(Function PROPERTIES IMPORTED_LOCATION ${FXN_LIB_PATH})
+add_library(Function::Function SHARED IMPORTED GLOBAL)
+target_compile_features(Function::Function PUBLIC cxx_std_17)
+target_include_directories(Function::Function INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+set_target_properties(Function::Function PROPERTIES IMPORTED_LOCATION ${FXN_LIB_PATH})
 if(DEFINED FXN_IMPLIB_PATH)
-    set_target_properties(Function PROPERTIES IMPORTED_IMPLIB ${FXN_IMPLIB_PATH})
+    set_target_properties(Function::Function PROPERTIES IMPORTED_IMPLIB ${FXN_IMPLIB_PATH})
 endif()
