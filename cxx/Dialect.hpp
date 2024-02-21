@@ -38,10 +38,13 @@
  Android x86_64 platform.
 
  @constant FXN_PLATFORM_ANDROID
- Android platform across all ABIs.
+ Android platform across all architectures.
+
+ @constant FXN_PLATFORM_IOS_ARM64
+ iOS arm64 platform.
 
  @constant FXN_PLATFORM_IOS
- iOS platform.
+ iOS platform across all architectures.
  
  @constant FXN_PLATFORM_MACOS_X64
  macOS x86_64 platform.
@@ -50,7 +53,7 @@
  macOS arm64 platform.
 
  @constant FXN_PLATFORM_MACOS
- macOS platform across all ABIs.
+ macOS platform across all architectures.
 
  @constant FXN_PLATFORM_LINUX_X64
  Linux x86_64 platform.
@@ -59,7 +62,7 @@
  Linux arm64 platform.
 
  @constant FXN_PLATFORM_LINUX
- Linux platform across all ABIs.
+ Linux platform across all architectures.
 
  @constant FXN_PLATFORM_WASM
  WebAssembly platform.
@@ -68,7 +71,7 @@
  Windows x86_64 platform.
 
  @constant FXN_PLATFORM_WINDOWS
- Windows platform across all ABIs.
+ Windows platform across all architectures.
 */
 enum FXNPlatform {
     FXN_PLATFORM_UNKNOWN        = 0,
@@ -77,7 +80,8 @@ enum FXNPlatform {
     FXN_PLATFORM_ANDROID_X86    = 1 << 2,
     FXN_PLATFORM_ANDROID_X64    = 1 << 3,
     FXN_PLATFORM_ANDROID        = FXN_PLATFORM_ANDROID_ARM | FXN_PLATFORM_ANDROID_ARM64 | FXN_PLATFORM_ANDROID_X86 | FXN_PLATFORM_ANDROID_X64,
-    FXN_PLATFORM_IOS            = 1 << 4,
+    FXN_PLATFORM_IOS_ARM64      = 1 << 4,
+    FXN_PLATFORM_IOS            = FXN_PLATFORM_IOS_ARM64,
     FXN_PLATFORM_MACOS_X64      = 1 << 5,
     FXN_PLATFORM_MACOS_ARM64    = 1 << 6,
     FXN_PLATFORM_MACOS          = FXN_PLATFORM_MACOS_X64 | FXN_PLATFORM_MACOS_ARM64,
