@@ -86,7 +86,7 @@ endif()
 
 # Define target
 add_library(Function::Function SHARED IMPORTED GLOBAL)
-target_compile_features(Function::Function PUBLIC cxx_std_17)
+target_compile_features(Function::Function INTERFACE cxx_std_17)
 target_include_directories(Function::Function INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set_target_properties(Function::Function PROPERTIES IMPORTED_LOCATION ${FXN_LIB_PATH})
 if(DEFINED FXN_IMPLIB_PATH)
