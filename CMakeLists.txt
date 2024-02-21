@@ -63,18 +63,16 @@ endif()
 
 # Create the directory and download the library
 file(MAKE_DIRECTORY ${FXN_LIB_DIR})
-if (NOT EXISTS ${FXN_LIB_PATH})
-    message(STATUS "Downloading ${FXN_LIB_NAME} from ${FXN_LIB_URL}")
-    file(DOWNLOAD
-        ${FXN_LIB_URL} ${FXN_LIB_PATH}
-        TLS_VERIFY ON
-        TIMEOUT 60
-        LOG fxn_download_log
-    )
-endif()
+message(STATUS "Downloading ${FXN_LIB_NAME} from ${FXN_LIB_URL}")
+file(DOWNLOAD
+    ${FXN_LIB_URL} ${FXN_LIB_PATH}
+    TLS_VERIFY ON
+    TIMEOUT 60
+    LOG fxn_download_log
+)
 
 # Download the import library for Windows, if applicable
-if (DEFINED FXN_IMPLIB_URL AND NOT EXISTS ${FXN_IMPLIB_PATH})
+if (DEFINED FXN_IMPLIB_URL)
     message(STATUS "Downloading ${FXN_IMPLIB_NAME} from ${FXN_IMPLIB_URL}")
     file(DOWNLOAD
         ${FXN_IMPLIB_URL} ${FXN_IMPLIB_PATH}
@@ -92,3 +90,5 @@ set_target_properties(Function::Function PROPERTIES IMPORTED_LOCATION ${FXN_LIB_
 if(DEFINED FXN_IMPLIB_PATH)
     set_target_properties(Function::Function PROPERTIES IMPORTED_IMPLIB ${FXN_IMPLIB_PATH})
 endif()
+
+message(STATUS ${FXN_LIB_PATH})
