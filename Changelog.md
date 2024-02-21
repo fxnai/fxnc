@@ -1,5 +1,6 @@
 ## 0.0.4
 + Added `FXNConfigurationAddResource` function.
++ Updated C API to use `__cdecl` calling convention instead of `__stdcall` on Windows, matching other platforms.
 + Removed `FXNConfigurationGetResource` function.
 + Removed `FXNConfigurationSetResource` function.
 + Removed `FXNValueMapContainsKey` function. Use `FXNValueMapGetValue` function instead.
