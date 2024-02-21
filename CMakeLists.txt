@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(Function)
 
 # Settings
-set(FXN_VERSION "0.0.4")
+set(FXN_VERSION "0.0.3")
 set(FXN_PLATFORM "" CACHE STRING "Specify the target Function platform and architecture")
 set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_ANDROID_ARM"
@@ -25,8 +25,6 @@ endif()
 
 # Download Function
 function(generate_download_url)
-    set(FXN_LIB_DIR "${CMAKE_BINARY_DIR}/Function")
-    # Expand Android block into 4 architectures
     if(FXN_PLATFORM STREQUAL "FXN_PLATFORM_ANDROID_ARM")
         set(FXN_LIB_NAME "libFunction.so" PARENT_SCOPE)
         set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/libFunction-android-arm.so" PARENT_SCOPE)
@@ -57,6 +55,7 @@ endfunction()
 generate_download_url()
 
 # Resolve paths
+set(FXN_LIB_DIR "${CMAKE_BINARY_DIR}/Function")
 set(FXN_LIB_PATH "${FXN_LIB_DIR}/${FXN_LIB_NAME}")
 if (DEFINED FXN_IMPLIB_NAME)
     set(FXN_IMPLIB_PATH "${FXN_LIB_DIR}/${FXN_IMPLIB_NAME}")
@@ -70,7 +69,6 @@ if (NOT EXISTS ${FXN_LIB_PATH})
         ${FXN_LIB_URL} ${FXN_LIB_PATH}
         TLS_VERIFY ON
         TIMEOUT 60
-        SHOW_PROGRESS
         LOG fxn_download_log
     )
 endif()
@@ -82,15 +80,13 @@ if (DEFINED FXN_IMPLIB_URL AND NOT EXISTS ${FXN_IMPLIB_PATH})
         ${FXN_IMPLIB_URL} ${FXN_IMPLIB_PATH}
         TLS_VERIFY ON
         TIMEOUT 60
-        SHOW_PROGRESS
         LOG fxn_implib_download_log
     )
 endif()
 
 # Define target
-add_library(Function SHARED IMPORTED)
-target_include_directories(Function INTERFACE ${CMAKE_SOURCE_DIR})
-target_include_directories(Function INTERFACE ${CMAKE_SOURCE_DIR}/cxx)
+add_library(Function SHARED IMPORTED GLOBAL)
+target_include_directories(Function INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set_target_properties(Function PROPERTIES IMPORTED_LOCATION ${FXN_LIB_PATH})
 if(DEFINED FXN_IMPLIB_PATH)
     set_target_properties(Function PROPERTIES IMPORTED_IMPLIB ${FXN_IMPLIB_PATH})
