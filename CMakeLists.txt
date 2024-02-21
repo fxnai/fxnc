@@ -3,9 +3,9 @@ project(Function)
 
 # Settings
 set(FXN_VERSION "0.0.3")
-set(FXN_PLATFORM "" CACHE STRING "Specify the target Function platform and architecture")
-option(FXN_INFER_PLATFORM "Automatically infer Function platform for `CMAKE_SYSTEM_NAME` and current architecture." OFF)
+set(FXN_PLATFORM "FXN_PLATFORM_AUTO" CACHE STRING "Specify the target Function platform and architecture")
 set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
+    "FXN_PLATFORM_AUTO"
     "FXN_PLATFORM_ANDROID_ARM"
     "FXN_PLATFORM_ANDROID_ARM64"
     "FXN_PLATFORM_ANDROID_X86"
@@ -20,8 +20,8 @@ set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
 )
 
 # Infer platform
-if(FXN_INFER_PLATFORM)
-    if(CMAKE_SYSTEM_NAME STREQUAL "ANDROID")
+if(FXN_PLATFORM STREQUAL "FXN_PLATFORM_AUTO")
+    if(CMAKE_SYSTEM_NAME STREQUAL "Android")
         if (ANDROID_ABI STREQUAL "armeabi-v7a")
             set(FXN_PLATFORM "FXN_PLATFORM_ANDROID_ARM")
         elseif(ANDROID_ABI STREQUAL "arm64-v8a")
@@ -61,11 +61,6 @@ if(FXN_INFER_PLATFORM)
     endif()
 endif()
 
-# Check platform
-if(FXN_PLATFORM STREQUAL "")
-    message(FATAL_ERROR "Please specify a platform by setting FXN_PLATFORM.")
-endif()
-
 # Download Function
 function(generate_download_url)
     if(FXN_PLATFORM STREQUAL "FXN_PLATFORM_ANDROID_ARM")
@@ -95,6 +90,8 @@ function(generate_download_url)
         set(FXN_IMPLIB_NAME "Function.lib" PARENT_SCOPE)
         set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function-win64.dll" PARENT_SCOPE)
         set(FXN_IMPLIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function-win64.lib" PARENT_SCOPE)
+    else()
+        message(FATAL_ERROR "Failed to download Function library due to invalid platform: ${FXN_PLATFORM}")
     endif()
 endfunction()
 
