@@ -1,3 +1,6 @@
+## 0.0.5
+*INCOMPLETE*
+
 ## 0.0.4
 + Added `FXNConfigurationAddResource` function.
 + Updated C API to use `__cdecl` calling convention instead of `__stdcall` on Windows, matching other platforms.
