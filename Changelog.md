@@ -1,5 +1,6 @@
 ## 0.0.5
-*INCOMPLETE*
++ Added CMake improvements.
++ Fixed linker errors when building for macOS x86_64.
 
 ## 0.0.4
 + Added `FXNConfigurationAddResource` function.

@@ -1,8 +1,23 @@
 cmake_minimum_required(VERSION 3.20)
-project(Function)
+
+# Get version
+file(READ "${CMAKE_CURRENT_SOURCE_DIR}/include/Function/FXNVersion.h" FXN_VERSION_HEADER_CONTENTS)
+string(REGEX MATCH "FXN_VERSION_MAJOR ([0-9]+)" FXN_VERSION_MAJOR ${FXN_VERSION_HEADER_CONTENTS})
+string(REGEX MATCH "FXN_VERSION_MINOR ([0-9]+)" FXN_VERSION_MINOR ${FXN_VERSION_HEADER_CONTENTS})
+string(REGEX MATCH "FXN_VERSION_PATCH ([0-9]+)" FXN_VERSION_PATCH ${FXN_VERSION_HEADER_CONTENTS})
+set(FXN_VERSION "${FXN_VERSION_MAJOR}.${FXN_VERSION_MINOR}.${FXN_VERSION_PATCH}")
+message(STATUS "Function ${FXN_VERSION}")
+
+# Define project
+project(
+    Function
+    VERSION ${FXN_VERSION}
+    DESCRIPTION "Function unified C/C++ API for running Python functions on desktop, mobile, web, and in the cloud. Register at https://fxn.ai"
+    HOMEPAGE_URL "https://github.com/fxnai/fxnc"
+    LANGUAGES C CXX
+)
 
 # Settings
-set(FXN_VERSION "0.0.5")
 set(FXN_PLATFORM "FXN_PLATFORM_AUTO" CACHE STRING "Specify the target Function platform and architecture")
 set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_AUTO"
@@ -39,7 +54,6 @@ if(FXN_PLATFORM STREQUAL "FXN_PLATFORM_AUTO")
             message(FATAL_ERROR "Failed to infer Function platform because `CMAKE_OSX_ARCHITECTURES` is not set. Please specify the target architecture.")
         endif()
         # Get the first value from CMAKE_OSX_ARCHITECTURES
-        # This technically doesn't matter because we compile a fat binary for macOS
         list(GET CMAKE_OSX_ARCHITECTURES 0 osx_arch)
         if(osx_arch STREQUAL "x86_64")
             set(FXN_PLATFORM "FXN_PLATFORM_MACOS_X64")
@@ -79,9 +93,12 @@ function(generate_download_url)
         # set(FXN_LIB_NAME "libFunction.a" PARENT_SCOPE)
         # set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/libFunction-ios-arm64.a" PARENT_SCOPE)
         message(FATAL_ERROR "Function support for iOS has not yet been launched")
-    elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_MACOS_X64" OR FXN_PLATFORM STREQUAL "FXN_PLATFORM_MACOS_ARM64")
+    elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_MACOS_ARM64")
         set(FXN_LIB_NAME "Function.dylib" PARENT_SCOPE)
-        set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function-macos.dylib" PARENT_SCOPE)
+        set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function-macos-arm64.dylib" PARENT_SCOPE)
+    elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_MACOS_X64")
+        set(FXN_LIB_NAME "Function.dylib" PARENT_SCOPE)
+        set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function-macos-x86_64.dylib" PARENT_SCOPE)
     elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_WASM")
         set(FXN_LIB_NAME "libFunction.so" PARENT_SCOPE)
         set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/libFunction-wasm.so" PARENT_SCOPE)
