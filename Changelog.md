@@ -1,3 +1,6 @@
+## 0.0.6
++ Fixed C++ double-free error when retrieving a `Function::Value` from a `Function::ValueMap`.
+
 ## 0.0.5
 + Added CMake improvements.
 + Fixed linker errors when building for macOS x86_64.

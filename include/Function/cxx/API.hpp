@@ -364,7 +364,7 @@ inline Value ValueMap::Proxy::Get () const {
     FXNValue* value = nullptr;
     auto status = FXNValueMapGetValue(map, key.c_str(), &value);
     FXN_ASSERT_THROW(status == FXN_OK, "Value map does not contain a value for key `{}`", key);
-    return Value(value);
+    return Value(value, false);
 }
 
 template<>
