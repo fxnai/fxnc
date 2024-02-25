@@ -26,7 +26,11 @@ inline Configuration::Configuration () : configuration(nullptr) {
     owner = true;
 }
 
-inline Configuration::Configuration (FXNConfiguration* value, bool owner) : configuration(value), owner(owner) {
+inline Configuration::Configuration (const std::string& tag) : Configuration() {
+    SetTag(tag);
+}
+
+inline Configuration::Configuration (FXNConfiguration* value, bool owner) noexcept : configuration(value), owner(owner) {
 
 }
 
@@ -53,6 +57,18 @@ inline Configuration& Configuration::operator= (Configuration&& other) noexcept 
     other.owner = false;
     // Return
     return *this;
+}
+
+inline std::string Configuration::GetTag () const {
+    std::string tag;
+    tag.resize(1024);
+    FXNConfigurationGetTag(configuration, tag.data(), static_cast<int>(tag.size()));
+    tag.resize(strlen(tag.c_str()));
+    return tag;
+}
+
+inline void Configuration::SetTag (const std::string& tag) const {
+    FXNConfigurationSetTag(configuration, tag.c_str());
 }
 
 inline std::string Configuration::GetToken () const {
@@ -169,11 +185,11 @@ struct ToFXNDtype<bool> {
     static constexpr FXNDtype type = FXN_DTYPE_BOOL;
 };
 
-inline Value::Value (FXNValue* value, bool owner) : value(value), owner(owner) {
+inline Value::Value (FXNValue* value, bool owner) noexcept : value(value), owner(owner) {
 
 }
 
-inline Value::Value (Value&& other) noexcept : value(other.value) {
+inline Value::Value (Value&& other) noexcept : value(other.value), owner(other.owner) {
     other.value = nullptr;
     other.owner = false;
 }
@@ -296,7 +312,7 @@ inline ValueMap::ValueMap () : map(nullptr) {
     owner = true;
 }
 
-inline ValueMap::ValueMap (FXNValueMap* map, bool owner) : map(map), owner(owner) {
+inline ValueMap::ValueMap (FXNValueMap* map, bool owner) noexcept : map(map), owner(owner) {
 
 }
 
@@ -492,6 +508,125 @@ inline const ValueMap::Proxy& ValueMap::Proxy::operator= (Value&& value) const {
     return *this;
 }
 
+#pragma endregion
+
+
+#pragma region --Prediction--
+
+inline Prediction::Prediction (FXNPrediction* prediction, bool owner) noexcept : prediction(prediction), owner(owner) {
+
+}
+
+inline Prediction::Prediction (Prediction&& other) noexcept : prediction(other.prediction), owner(other.owner) {
+    other.prediction = nullptr;
+    other.owner = false;
+}
+
+inline Prediction::~Prediction () {
+    if (owner)
+        FXNPredictionRelease(prediction);
+}
+
+inline Prediction& Prediction::operator= (Prediction&& other) noexcept {
+    // Check
+    if (this == &other)
+        return *this;
+    // Move
+    if (owner)
+        FXNPredictionRelease(prediction);
+    prediction = other.prediction;
+    owner = other.owner;
+    other.prediction = nullptr;
+    other.owner = false;
+    // Return
+    return *this;
+}
+
+inline std::string Prediction::GetID () const {
+    std::string id;
+    id.resize(1024);
+    FXNPredictionGetID(prediction, id.data(), static_cast<int>(id.size()));
+    id.resize(strlen(id.c_str()));
+    return id;
+}
+
+inline double Prediction::GetLatency () const {
+    double latency = 0;
+    FXNPredictionGetLatency(prediction, &latency);
+    return latency;
+}
+
+inline ValueMap Prediction::GetResults () const {
+    FXNValueMap* outputs = nullptr;
+    FXNPredictionGetResults(prediction, &outputs);
+    return ValueMap(outputs, false);
+}
+
+inline std::string Prediction::GetError () const {
+    std::string error;
+    error.resize(4096);
+    FXNPredictionGetError(prediction, error.data(), static_cast<int>(error.size()));
+    error.resize(strlen(error.c_str()));
+    return error;
+}
+
+inline std::string Prediction::GetLogs () const {
+    int32_t length = 0;
+    FXNPredictionGetLogLength(prediction, &length);
+    std::string logs;
+    logs.resize(length);
+    FXNPredictionGetLogs(prediction, logs.data(), length);
+    return logs;
+}
+
+inline Prediction::operator FXNPrediction* () const {
+    return prediction;
+}
+
+#pragma endregion
+
+
+#pragma region --Predictor--
+
+inline Predictor::Predictor (const Configuration& configuration) : predictor(nullptr) {
+    FXNPredictorCreate(configuration, &predictor);
+    owner = true;
+}
+
+inline Predictor::Predictor (FXNPredictor* predictor, bool owner) noexcept : predictor(predictor), owner(owner) {
+
+}
+
+inline Predictor::Predictor (Predictor&& other) noexcept : predictor(other.predictor), owner(other.owner) {
+    other.predictor = nullptr;
+    other.owner = false;
+}
+
+inline Predictor::~Predictor () {
+    if (owner)
+        FXNPredictorRelease(predictor);
+}
+
+inline Predictor& Predictor::operator= (Predictor&& other) noexcept {
+    // Check
+    if (this == &other)
+        return *this;
+    // Move
+    if (owner)
+        FXNPredictorRelease(predictor);
+    predictor = other.predictor;
+    owner = other.owner;
+    other.predictor = nullptr;
+    other.owner = false;
+    // Return
+    return *this;
+}
+
+inline Prediction Predictor::operator() (const ValueMap& inputs) const {
+    FXNPrediction* prediction = nullptr;
+    FXNPredictorPredict(predictor, inputs, &prediction);
+    return Prediction(prediction, true);
+}
 #pragma endregion
 
 }

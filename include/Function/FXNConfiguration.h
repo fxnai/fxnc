@@ -97,12 +97,52 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationRelease (FXNConfiguratio
 
 #pragma region --Configuration--
 /*!
+ @function FXNConfigurationGetTag
+
+ @abstract Get the predictor tag.
+
+ @discussion Get the predictor tag.
+
+ @param configuration
+ Predictor configuration.
+
+ @param tag
+ Destination buffer.
+
+ @param size
+ Size of destination buffer.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationGetTag (
+    FXNConfiguration* configuration,
+    char* tag,
+    int32_t size
+);
+
+/*!
+ @function FXNConfigurationSetTag
+
+ @abstract Set the predictor tag.
+
+ @discussion Set the predictor tag.
+ This is requried for Function to load the predictor.
+
+ @param configuration
+ Predictor configuration.
+
+ @param tag
+ Predictor tag.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetTag (
+    FXNConfiguration* configuration,
+    const char* tag
+);
+
+/*!
  @function FXNConfigurationGetToken
 
  @abstract Get the configuration token.
 
  @discussion Get the configuration token.
- This is requried for Function to load the predictor.
 
  @param configuration
  Predictor configuration.

@@ -61,7 +61,7 @@ namespace Function {
     public:
         ValueMap ();
 
-        explicit ValueMap (FXNValueMap* map, bool owner = true);
+        explicit ValueMap (FXNValueMap* map, bool owner = true) noexcept;
 
         ValueMap (const ValueMap&) = delete;
 

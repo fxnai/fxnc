@@ -19,7 +19,9 @@ namespace Function {
     public:
         Configuration ();
 
-        explicit Configuration (FXNConfiguration* value, bool owner = true);
+        explicit Configuration (const std::string& tag);
+
+        explicit Configuration (FXNConfiguration* value, bool owner = true) noexcept;
 
         Configuration (const Configuration&) = delete;
 
@@ -30,6 +32,10 @@ namespace Function {
         Configuration& operator= (const Configuration&) = delete;
 
         Configuration& operator= (Configuration&& other) noexcept;
+
+        std::string GetTag () const;
+
+        void SetTag (const std::string& tag) const;
 
         std::string GetToken () const;
 

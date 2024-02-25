@@ -25,7 +25,7 @@ namespace Function {
          @param owner
          Whether to transfer ownership to the `Function::Value`.
         */
-        explicit Value (FXNValue* value, bool owner = true);
+        explicit Value (FXNValue* value, bool owner = true) noexcept;
 
         Value (const Value&) = delete;
 

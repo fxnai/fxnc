@@ -9,8 +9,7 @@
 #pragma once
 
 #include "FXNConfiguration.h"
-#include "FXNProfile.h"
-#include "FXNValueMap.h"
+#include "FXNPrediction.h"
 
 #pragma region --Types--
 /*!
@@ -33,17 +32,13 @@ typedef struct FXNPredictor FXNPredictor;
 
  @discussion Create a predictor.
 
- @param tag
- Predictor tag.
-
  @param configuration
- Predictor configuration. MUST NOT be `NULL`.
+ Predictor configuration.
 
  @param predictor
- Created predictor. MUST NOT be `NULL`.
+ Created predictor.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorCreate (
-    const char* tag,
     FXNConfiguration* configuration,
     FXNPredictor** predictor
 );
@@ -66,28 +61,23 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
 /*!
  @function FXNPredictorPredict
 
- @abstract Make a prediction.
+ @abstract Create a prediction.
 
- @discussion Make a prediction.
+ @discussion Create a prediction.
 
  @param predictor
  Predictor.
 
  @param inputs
- Prediction inputs. MUST NOT be `NULL`.
+ Prediction inputs.
 
- @param profile
- Prediction profile. Can be `NULL`.
- You MUST release the profile with `FXNProfileRelease` when no longer needed.
-
- @param outputs
- Prediction outputs. MUST NOT be `NULL`.
- You MUST release the value map with `FXNValueMapRelease` when no longer needed.
+ @param prediction
+ Prediction outputs.
+ You MUST release the prediction with `FXNPredictionRelease` when no longer needed.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
-    FXNProfile** profile,
-    FXNValueMap** outputs
+    FXNPrediction** prediction
 );
 #pragma endregion

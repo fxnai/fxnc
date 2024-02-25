@@ -1,5 +1,20 @@
 ## 0.0.6
++ Added `FXNConfigurationGetTag` function for retrieving the predictor tag from a configuration.
++ Added `FXNConfigurationSetTag` function for setting the predictor tag in a configuration.
++ Added `Function::Configuration::GetTag` method for retrieving the predictor tag from a configuration.
++ Added `Function::Configuration::SetTag` method for setting the predictor tag in a configuration.
++ Added `FXNPredictionGetResults` function for retrieving prediction outputs value map.
++ Added `Function::Prediction` class for working with predictions.
 + Fixed C++ double-free error when retrieving a `Function::Value` from a `Function::ValueMap`.
++ Updated `FXNPredictorCreate` function to no longer accept a `tag`. Specify the tag in the configuration instead.
++ Updated `FXNPredictorPredict` function to accept an `FXNPrediction**` in place of a profile and output value map.
++ Refactored `FXNProfile` struct to `FXNPrediction`.
++ Refactored `FXNProfileGetID` function to `FXNPredictionGetID`.
++ Refactored `FXNProfileGetLatency` function to `FXNPredictionGetLatency`.
++ Refactored `FXNProfileGetError` function to `FXNPredictionGetError`.
++ Refactored `FXNProfileGetLogLength` function to `FXNPredictionGetLogLength`.
++ Refactored `FXNProfileGetLogs` function to `FXNPredictionGetLogs`.
++ Refactored `FXNProfileRelease` function to `FXNPredictionRelease.`
 
 ## 0.0.5
 + Added CMake improvements.

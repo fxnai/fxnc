@@ -13,4 +13,6 @@
 #include "cxx/Configuration.hpp"
 #include "cxx/Value.hpp"
 #include "cxx/ValueMap.hpp"
+#include "cxx/Prediction.hpp"
+#include "cxx/Predictor.hpp"
 #include "cxx/API.hpp"
