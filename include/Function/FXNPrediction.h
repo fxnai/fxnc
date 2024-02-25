@@ -114,7 +114,8 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictionGetResults (
  @param size
  Destination buffer size.
 
- @returns `FXN_OK` if an error has been copied. `FXN_ERROR_INVALID_OPERATION` if no error is present in the profile.
+ @returns `FXN_OK` if an error has been copied.
+ `FXN_ERROR_INVALID_OPERATION` if no error exists.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictionGetError (
     FXNPrediction* prediction,
