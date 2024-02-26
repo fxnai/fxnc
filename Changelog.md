@@ -1,3 +1,6 @@
+## 0.0.7
++ Added codesigning for macOS libraries.
+
 ## 0.0.6
 + Added `FXNConfigurationGetTag` function for retrieving the predictor tag from a configuration.
 + Added `FXNConfigurationSetTag` function for setting the predictor tag in a configuration.
