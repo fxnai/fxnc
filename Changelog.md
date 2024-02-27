@@ -1,4 +1,5 @@
 ## 0.0.7
++ Added Function C API implementation for iOS.
 + Added codesigning for macOS libraries.
 
 ## 0.0.6
@@ -36,7 +37,7 @@
 + Added support for setting interleaved `channels` count in `FXNValueCreateImage`.
 
 ## 0.0.2
-+ Added Function C API implementations for Android, iOS, macOS, and WebAssembly.
++ Added Function C API implementations for Android, macOS, and WebAssembly.
 + Added `FXNConfigurationGetResource` function for retrieving a configuration resource.
 + Added `FXNConfigurationSetResource` function for specifying a configuration resource.
 + Added `FXNProfile.h` header for prediction profiling.
