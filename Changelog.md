@@ -1,3 +1,6 @@
+## 0.0.8
++ Fixed predictor creation failing on iOS.
+
 ## 0.0.7
 + Added Function C API implementation for iOS.
 + Added codesigning for macOS libraries.
