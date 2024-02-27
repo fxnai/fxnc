@@ -168,7 +168,6 @@ endif()
 
 # Unzip framework
 if("${FXN_LIB_NAME}" MATCHES "\\.zip$")
-    message("Unzipping file")
     execute_process(COMMAND ${CMAKE_COMMAND} -E tar xzf "${FXN_LIB_NAME}" WORKING_DIRECTORY ${FXN_LIB_DIR} RESULT_VARIABLE result_var)
     if(NOT result_var EQUAL 0)
         message(FATAL_ERROR "Failed to unzip ${FXN_LIB_NAME}")        
