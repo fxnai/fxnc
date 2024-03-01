@@ -1,3 +1,6 @@
+## 0.0.9
++ Added support for loading predictors in sandboxed iOS and macOS apps.
+
 ## 0.0.8
 + Fixed predictor creation failing on iOS.
 
