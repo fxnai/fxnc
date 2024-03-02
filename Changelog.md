@@ -1,3 +1,7 @@
+## 0.0.10
++ Refactored `FXN_INFERENCE_FORMAT_GGML` constant to `FXN_INFERENCE_FORMAT_GGUF`.
++ Removed `FXNInferenceFormat` enumeration.
+
 ## 0.0.9
 + Added support for loading predictors in sandboxed iOS and macOS apps.
 
