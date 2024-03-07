@@ -1,3 +1,6 @@
+## 0.0.11
++ Fixed compiler errors when building for WebAssembly by importing Emscripten headers.
+
 ## 0.0.10
 + Refactored `FXN_INFERENCE_FORMAT_GGML` constant to `FXN_INFERENCE_FORMAT_GGUF`.
 + Removed `FXNInferenceFormat` enumeration.
