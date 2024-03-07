@@ -1,5 +1,8 @@
 ## 0.0.11
++ Added `FXN_PLATFORM_WASM32` platform constant for targeting 32-bit WebAssembly.
++ Added experimental `FXN_PLATFORM_WASM64` platform constant for targeting 64-bit WebAssembly (Memory64).
 + Fixed compiler errors when building for WebAssembly by importing Emscripten headers.
++ Updated `FXN_PLATFORM_WASM` platform constant to contain both `FXN_PLATFORM_WASM32` and `FXN_PLATFORM_WASM64`.
 
 ## 0.0.10
 + Refactored `FXN_INFERENCE_FORMAT_GGML` constant to `FXN_INFERENCE_FORMAT_GGUF`.

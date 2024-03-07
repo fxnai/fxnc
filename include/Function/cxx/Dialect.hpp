@@ -64,8 +64,14 @@
  @constant FXN_PLATFORM_LINUX
  Linux platform across all architectures.
 
+ @constant FXN_PLATFORM_WASM32
+ WebAssembly 32-bit platform.
+
+ @constant FXN_PLATFORM_WASM64
+ WebAssembly 64-bit platform (MEMORY64).
+
  @constant FXN_PLATFORM_WASM
- WebAssembly platform.
+ WebAssembly platform across all architectures.
 
  @constant FXN_PLATFORM_WINDOWS_X64
  Windows x86_64 platform.
@@ -88,7 +94,9 @@ enum FXNPlatform {
     FXN_PLATFORM_LINUX_X64      = 1 << 7,
     FXN_PLATFORM_LINUX_ARM64    = 1 << 8,
     FXN_PLATFORM_LINUX          = FXN_PLATFORM_LINUX_X64 | FXN_PLATFORM_LINUX_ARM64,
-    FXN_PLATFORM_WASM           = 1 << 9,
+    FXN_PLATFORM_WASM32         = 1 << 9,
+    FXN_PLATFORM_WASM64         = 1 << 12,
+    FXN_PLATFORM_WASM           = FXN_PLATFORM_WASM32 | FXN_PLATFORM_WASM64,
     FXN_PLATFORM_WINDOWS_X64    = 1 << 10,
     FXN_PLATFORM_WINDOWS        = FXN_PLATFORM_WINDOWS_X64,
 };
