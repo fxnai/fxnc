@@ -1,3 +1,6 @@
+## 0.0.12
++ Function is now compiled as a `MAIN_MODULE` on WebAssembly. See `Function.js` and `Function.wasm` release artifacts.
+
 ## 0.0.11
 + Added `FXN_PLATFORM_WASM32` platform constant for targeting 32-bit WebAssembly.
 + Added experimental `FXN_PLATFORM_WASM64` platform constant for targeting 64-bit WebAssembly (Memory64).
