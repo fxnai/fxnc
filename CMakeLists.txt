@@ -33,7 +33,8 @@ set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_MACOS_ARM64"
     "FXN_PLATFORM_LINUX_X64"
     "FXN_PLATFORM_LINUX_ARM64"
-    "FXN_PLATFORM_WASM"
+    "FXN_PLATFORM_WASM32"
+    "FXN_PLATFORM_WASM64"
     "FXN_PLATFORM_WINDOWS_X64"
 )
 
@@ -73,7 +74,7 @@ if(FXN_PLATFORM STREQUAL "FXN_PLATFORM_AUTO")
             endif()
         endif()
     elseif(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
-        set(FXN_PLATFORM "FXN_PLATFORM_WASM")
+        set(FXN_PLATFORM "FXN_PLATFORM_WASM32")
     elseif(CMAKE_SYSTEM_NAME STREQUAL "iOS")
         set(FXN_PLATFORM "FXN_PLATFORM_IOS_ARM64")
     elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -110,9 +111,9 @@ function(generate_download_url)
     elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_MACOS_X64")
         set(FXN_LIB_NAME "Function.dylib" PARENT_SCOPE)
         set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function-macos-x86_64.dylib" PARENT_SCOPE)
-    elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_WASM")
+    elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_WASM32")
         set(FXN_LIB_NAME "libFunction.so" PARENT_SCOPE)
-        set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/libFunction-wasm.so" PARENT_SCOPE)
+        set(FXN_LIB_URL "https://cdn.fxn.ai/edgefxn/${FXN_VERSION}/Function.wasm" PARENT_SCOPE)
     elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_WINDOWS_X64")
         set(FXN_LIB_NAME "Function.dll" PARENT_SCOPE)
         set(FXN_IMPLIB_NAME "Function.lib" PARENT_SCOPE)
