@@ -9,9 +9,9 @@
 #pragma once
 
 #include <vector>
-#include "Assert.hpp"
-#include "Configuration.hpp"
-#include "Value.hpp"
+#include <Function/cxx/Assert.hpp>
+#include <Function/cxx/Configuration.hpp>
+#include <Function/cxx/Value.hpp>
 
 #ifdef _WIN64
     #include <windows.h>

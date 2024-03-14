@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "FXNAPI.h"
+#include <Function/FXNAPI.h>
 
 #define FXN_VERSION_MAJOR 0
 #define FXN_VERSION_MINOR 0
