@@ -1,3 +1,6 @@
+## 0.0.13
+*INCOMPLETE*
+
 ## 0.0.12
 + Function is now compiled as a `MAIN_MODULE` on WebAssembly. See `Function.js` and `Function.wasm` release artifacts.
 
