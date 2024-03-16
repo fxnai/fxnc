@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.22)
 
 # Get version
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/include/Function/FXNVersion.h" FXN_VERSION_HEADER_CONTENTS)
