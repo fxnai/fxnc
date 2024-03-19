@@ -508,6 +508,33 @@ inline const ValueMap::Proxy& ValueMap::Proxy::operator= (Value&& value) const {
     return *this;
 }
 
+inline ValueMap::Iterator::Iterator (const ValueMap& map, int index) : map(const_cast<ValueMap&>(map)), index(index) { }
+
+inline std::pair<std::string, Value> ValueMap::Iterator::operator* () const {
+    // Get key
+    char key[256] { };
+    auto status = FXNValueMapGetKey(map, index, key, sizeof key);
+    FXN_ASSERT_THROW(status == FXN_OK, "Value map iterator failed to get value map key with status: {}", status);
+    // Get value
+    FXNValue* value = nullptr;
+    status = FXNValueMapGetValue(map, key, &value);
+    FXN_ASSERT_THROW(status == FXN_OK, "Value map iterator failed to get value map value with status: {}", status);
+    // Return
+    return { std::string(key), Value(value, false) };
+}
+
+inline ValueMap::Iterator& ValueMap::Iterator::operator++ () {
+    ++index;
+    return *this;
+}
+
+inline bool ValueMap::Iterator::operator== (const ValueMap::Iterator& other) const {
+    return map.map == other.map.map && index == other.index;
+}
+
+inline bool ValueMap::Iterator::operator!= (const ValueMap::Iterator& other) const {
+    return !(*this == other);
+}
 #pragma endregion
 
 
