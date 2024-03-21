@@ -128,6 +128,9 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueMapGetValue (
 
  @discussion Set the value for a given key in the value map.
 
+ NOTE: The value map takes ownership of the value.
+ As such, you must not call `FXNValueRelease` on the value.
+
  @param map
  Prediction value map.
 
