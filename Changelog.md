@@ -1,3 +1,6 @@
+## 0.0.14
++ Fixed edge predictions failing in the browser when using backend proxy service.
+
 ## 0.0.13
 + Minor updates.
 
