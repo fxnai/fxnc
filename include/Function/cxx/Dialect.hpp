@@ -217,7 +217,7 @@ typedef enum FXNPlatform FXNPlatform;
  @see FXNPlatform
  @see FXN_LIBRARY_NO_INCLUDE
 */
-#define FXN_OP_LIBRARY(target,platform,include)
+#define FXN_OP_LIBRARY(target, platform, include)
 
 /*!
  @abstract Operator metadata.
