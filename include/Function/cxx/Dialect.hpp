@@ -11,7 +11,7 @@
 /**
  @abstract Function dialect definition.
  
- @discussion This header provides enables developers to bring their custom operators to the Function platform.
+ @discussion This header enables developers to bring their custom operators to the Function platform.
  
  NOTE: This header is EXPERIMENTAL.
 */
