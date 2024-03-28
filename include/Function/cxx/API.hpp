@@ -234,7 +234,8 @@ inline int32_t Value::GetDimensions () const {
 inline std::vector<int32_t> Value::GetShape () const {
     int32_t dimensions = GetDimensions();
     std::vector<int32_t> shape(dimensions);
-    FXNValueGetShape(value, shape.data(), dimensions);
+    if (dimensions > 0)
+        FXNValueGetShape(value, shape.data(), dimensions);
     return shape;
 }
 
