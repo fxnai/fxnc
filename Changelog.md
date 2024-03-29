@@ -1,3 +1,6 @@
+## 0.0.15
++ Fixed corrupted JSON string in `FXNValueCreateDict` and `FXNValueCreateList` functions.
+
 ## 0.0.14
 + Fixed edge predictions failing in the browser when using backend proxy service.
 
