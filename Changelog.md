@@ -1,4 +1,5 @@
 ## 0.0.15
++ Fixed predictor creation failing on Android.
 + Fixed corrupted JSON string in `FXNValueCreateDict` and `FXNValueCreateList` functions.
 
 ## 0.0.14
