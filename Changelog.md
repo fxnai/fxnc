@@ -1,5 +1,5 @@
 ## 0.0.16
-*INCOMPLETE*
++ Fixed crash in `FXNPredictorCreate` when certain predictors cannot be loaded.
 
 ## 0.0.15
 + Fixed predictor creation failing on Android.
