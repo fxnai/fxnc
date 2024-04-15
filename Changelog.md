@@ -1,3 +1,6 @@
+## 0.0.17
++ Stability improvements.
+
 ## 0.0.16
 + Fixed crash in `FXNPredictorCreate` when certain predictors cannot be loaded.
 
