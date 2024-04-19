@@ -10,6 +10,7 @@
 
 #include <Function/FXNConfiguration.h>
 #include <Function/FXNPrediction.h>
+#include <Function/FXNPredictionStream.h>
 
 #pragma region --Types--
 /*!
@@ -72,12 +73,36 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
  Prediction inputs.
 
  @param prediction
- Prediction outputs.
+ Prediction.
  You MUST release the prediction with `FXNPredictionRelease` when no longer needed.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
     FXNPrediction** prediction
+);
+
+/*!
+ @function FXNPredictorStream
+
+ @abstract Create a streaming prediction.
+
+ @discussion Create a streaming prediction.
+ NOTE: This API is currently experimental.
+
+ @param predictor
+ Predictor.
+
+ @param inputs
+ Prediction inputs.
+
+ @param prediction
+ Prediction stream.
+ You MUST release the prediction stream with `FXNPredictionStreamRelease` when no longer needed.
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorStream (
+    FXNPredictor* predictor,
+    FXNValueMap* inputs,
+    FXNPredictionStream** stream
 );
 #pragma endregion

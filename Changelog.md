@@ -1,5 +1,5 @@
 ## 0.0.18
-*INCOMPLETE*
++ Added experimental streaming support with `FXNPredictorStream` function.
 
 ## 0.0.17
 + Stability improvements.
