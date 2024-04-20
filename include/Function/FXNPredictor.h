@@ -60,7 +60,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
 
 #pragma region --Operations--
 /*!
- @function FXNPredictorPredict
+ @function FXNPredictorCreatePrediction
 
  @abstract Create a prediction.
 
@@ -76,14 +76,14 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorRelease (FXNPredictor* predi
  Prediction.
  You MUST release the prediction with `FXNPredictionRelease` when no longer needed.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorCreatePrediction (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
     FXNPrediction** prediction
 );
 
 /*!
- @function FXNPredictorStream
+ @function FXNPredictorStreamPrediction
 
  @abstract Create a streaming prediction.
 
@@ -100,7 +100,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorPredict (
  Prediction stream.
  You MUST release the prediction stream with `FXNPredictionStreamRelease` when no longer needed.
 */
-FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorStream (
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNPredictorStreamPrediction (
     FXNPredictor* predictor,
     FXNValueMap* inputs,
     FXNPredictionStream** stream

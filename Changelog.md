@@ -1,5 +1,6 @@
 ## 0.0.18
-+ Added experimental streaming support with `FXNPredictorStream` function.
++ Added experimental streaming support with `FXNPredictorStreamPrediction` function.
++ Refactored `FXNPredictorPredict` function to `FXNPredictorCreatePrediction`.
 
 ## 0.0.17
 + Stability improvements.
