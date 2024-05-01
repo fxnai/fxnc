@@ -1,5 +1,6 @@
 ## 0.0.18
 + Added experimental streaming support with `FXNPredictorStreamPrediction` function.
++ Fixed Apple App Store app rejections due to missing `Bundle Version` key in `Function.framework`.
 + Refactored `FXNPredictorPredict` function to `FXNPredictorCreatePrediction`.
 
 ## 0.0.17
