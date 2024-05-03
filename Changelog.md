@@ -1,3 +1,6 @@
+## 0.0.19
+*INCOMPLETE*
+
 ## 0.0.18
 + Added experimental streaming support with `FXNPredictorStreamPrediction` function.
 + Fixed Apple App Store app rejections due to missing `Bundle Version` key in `Function.framework`.
