@@ -1,5 +1,5 @@
 ## 0.0.19
-*INCOMPLETE*
++ Fixed compile error in `Predictor::Predict` C++ API method.
 
 ## 0.0.18
 + Added experimental streaming support with `FXNPredictorStreamPrediction` function.
