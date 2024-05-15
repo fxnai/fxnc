@@ -1,3 +1,6 @@
+## 0.0.20
+*INCOMPLETE*
+
 ## 0.0.19
 + Fixed compile error in `Predictor::Predict` C++ API method.
 
