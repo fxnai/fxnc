@@ -1,5 +1,5 @@
 ## 0.0.20
-*INCOMPLETE*
++ Added `FXNConfigurationGetClientID` to get the current client identifier.
 
 ## 0.0.19
 + Fixed compile error in `Predictor::Predict` C++ API method.
