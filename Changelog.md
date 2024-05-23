@@ -1,3 +1,6 @@
+## 0.0.21
+*INCOMPLETE*
+
 ## 0.0.20
 + Added `FXNConfigurationGetClientID` to get the current client identifier.
 
