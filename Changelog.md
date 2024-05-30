@@ -1,5 +1,6 @@
 ## 0.0.21
-*INCOMPLETE*
++ Fixed Apple App Store upload errors due to incorrect `CFBundleVersion` key in `Function.framework`.
++ Removed `FXNPlatform` enumeration. The enumeration constants are now defined as macros in [Dialect.hpp](include/Function/cxx/Dialect.hpp).
 
 ## 0.0.20
 + Added `FXNConfigurationGetClientID` to get the current client identifier.
