@@ -1,3 +1,6 @@
+## 0.0.22
++ Fixed `FXNConfigurationGetClientID` function returning incorrect client identifier on Android devices.
+
 ## 0.0.21
 + Fixed Apple App Store upload errors due to incorrect `CFBundleVersion` key in `Function.framework`.
 + Removed `FXNPlatform` enumeration. The enumeration constants are now defined as macros in [Dialect.hpp](include/Function/cxx/Dialect.hpp).
