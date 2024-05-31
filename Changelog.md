@@ -1,3 +1,6 @@
+## 0.0.23
++ Added `PrivacyInfo.xcprivacy` iOS privacy manifest in `Function.framework`.
+
 ## 0.0.22
 + Fixed `FXNConfigurationGetClientID` function returning incorrect client identifier on Android devices.
 
