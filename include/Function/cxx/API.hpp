@@ -13,9 +13,9 @@
 #include <Function/cxx/Configuration.hpp>
 #include <Function/cxx/Value.hpp>
 
-#ifdef _WIN64
-    #include <windows.h>
-#endif
+// #ifdef _WIN64
+//     #include <windows.h>
+// #endif
 
 namespace Function {
 
