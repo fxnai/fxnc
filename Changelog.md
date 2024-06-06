@@ -1,3 +1,6 @@
+## 0.0.24
++ Minor stability improvements.
+
 ## 0.0.23
 + Added `PrivacyInfo.xcprivacy` iOS privacy manifest in `Function.framework`.
 
