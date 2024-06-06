@@ -1,5 +1,5 @@
 ## 0.0.24
-+ Minor stability improvements.
++ Function now builds for ARM64 on Windows.
 
 ## 0.0.23
 + Added `PrivacyInfo.xcprivacy` iOS privacy manifest in `Function.framework`.
