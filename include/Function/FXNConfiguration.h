@@ -47,6 +47,30 @@ typedef enum FXNAcceleration FXNAcceleration;
 */
 struct FXNConfiguration;
 typedef struct FXNConfiguration FXNConfiguration;
+
+/*!
+ @typedef FXNConfigurationAddResourceHandler
+
+ @abstract Callback invoked when a configuration resource has been loaded.
+ 
+ @param context
+ User context.
+
+ @param configuration
+ Predictor configuration.
+
+ @param path
+ Resource path.
+
+ @param status
+ Result status.
+*/
+typedef void (*FXNConfigurationAddResourceHandler) (
+    void* context,
+    FXNConfiguration* configuration,
+    const char* path,
+    FXNStatus status
+);
 #pragma endregion
 
 
