@@ -272,7 +272,7 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNConfigurationSetDevice (
 );
 
 /*!
- @function FXNConfigurationSetResource
+ @function FXNConfigurationAddResource
 
  @abstract Add a prediction resource.
 
