@@ -56,19 +56,11 @@ typedef struct FXNConfiguration FXNConfiguration;
  @param context
  User context.
 
- @param configuration
- Predictor configuration.
-
- @param path
- Resource path.
-
  @param status
  Result status.
 */
 typedef void (*FXNConfigurationAddResourceHandler) (
     void* context,
-    FXNConfiguration* configuration,
-    const char* path,
     FXNStatus status
 );
 #pragma endregion
