@@ -8,7 +8,6 @@
 
 #pragma once
 
-#include <Function/cxx/Dialect.hpp>
 #include <Function/cxx/Assert.hpp>
 #include <Function/cxx/Configuration.hpp>
 #include <Function/cxx/Value.hpp>
