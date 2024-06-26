@@ -1,3 +1,6 @@
+## 0.0.25
++ Fixed Function API web requests failing due to internet unreachability errors on iOS.
+
 ## 0.0.24
 + Function now builds for ARM64 on Windows.
 
