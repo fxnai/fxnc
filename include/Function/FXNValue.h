@@ -388,4 +388,58 @@ FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateBinary (
  Created value.
 */
 FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateNull (FXNValue** value);
+
+/*!
+ @function FXNValueCreateBySerializingValue
+
+ @abstract Create a value by serializing an existing value.
+
+ @discussion Create a value by serializing an existing value.
+ This is used for making cloud predictions.
+
+ @param value
+ Value.
+
+ @param flags
+ Serialization flags.
+
+ @param output
+ Serialized value. The value type is always `FXN_DTYPE_BINARY`.
+
+ @see FXNValueFlagsEx
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateBySerializingValue (
+    FXNValue* value,
+    FXNValueFlags flags,
+    FXNValue** output
+);
+
+/*!
+ @function FXNValueCreateByDeserializingValue
+
+ @abstract Create a value by deserializing an existing value.
+
+ @discussion Create a value by deserializing an existing value.
+ This is used for making cloud predictions.
+
+ @param value
+ Value. The value type MUST be `FXN_DTYPE_BINARY`.
+
+ @param type
+ Deserialized value type.
+
+ @param flags
+ Deserialization flags.
+
+ @param output
+ Deserialized value.
+
+ @see FXNValueFlagsEx
+*/
+FXN_BRIDGE FXN_EXPORT FXNStatus FXN_API FXNValueCreateByDeserializingValue (
+    FXNValue* value,
+    FXNDtype type,
+    FXNValueFlags flags,
+    FXNValue** output
+);
 #pragma endregion

@@ -1,3 +1,7 @@
+## 0.0.26
++ Added `FXNValueCreateBySerializingValue` function for serializing values for making cloud predictions.
++ Added `FXNValueCreateByDeserializingValue` function for deserializing values for making cloud predictions.
+
 ## 0.0.25
 + Fixed Function API web requests failing due to internet unreachability errors on iOS.
 
