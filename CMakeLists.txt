@@ -37,6 +37,7 @@ set_property(CACHE FXN_PLATFORM PROPERTY STRINGS
     "FXN_PLATFORM_WASM32"
     "FXN_PLATFORM_WASM64"
     "FXN_PLATFORM_WINDOWS_X64"
+    "FXN_PLATFORM_WINDOWS_ARM64"
 )
 
 # Infer platform
@@ -81,6 +82,8 @@ if(FXN_PLATFORM STREQUAL "FXN_PLATFORM_AUTO")
     elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         if(CMAKE_GENERATOR_PLATFORM MATCHES "x64")
             set(FXN_PLATFORM "FXN_PLATFORM_WINDOWS_X64" CACHE STRING ${FXN_PLATFORM_DOC} FORCE)
+        elseif(CMAKE_GENERATOR_PLATFORM MATCHES "ARM64")
+            set(FXN_PLATFORM "FXN_PLATFORM_WINDOWS_ARM64" CACHE STRING ${FXN_PLATFORM_DOC} FORCE)
         else()
             message(FATAL_ERROR "Failed to infer Function platform because of unsupported architecture: ${CMAKE_GENERATOR_PLATFORM}")
         endif()
@@ -118,8 +121,13 @@ function(generate_download_url)
     elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_WINDOWS_X64")
         set(FXN_LIB_NAME "Function.dll" PARENT_SCOPE)
         set(FXN_IMPLIB_NAME "Function.lib" PARENT_SCOPE)
-        set(FXN_LIB_URL "https://cdn.fxn.ai/fxnc/${FXN_VERSION}/Function-win64.dll" PARENT_SCOPE)
-        set(FXN_IMPLIB_URL "https://cdn.fxn.ai/fxnc/${FXN_VERSION}/Function-win64.lib" PARENT_SCOPE)
+        set(FXN_LIB_URL "https://cdn.fxn.ai/fxnc/${FXN_VERSION}/Function-win-x86_64.dll" PARENT_SCOPE)
+        set(FXN_IMPLIB_URL "https://cdn.fxn.ai/fxnc/${FXN_VERSION}/Function-win-x86_64.lib" PARENT_SCOPE)
+    elseif(FXN_PLATFORM STREQUAL "FXN_PLATFORM_WINDOWS_ARM64")
+        set(FXN_LIB_NAME "Function.dll" PARENT_SCOPE)
+        set(FXN_IMPLIB_NAME "Function.lib" PARENT_SCOPE)
+        set(FXN_LIB_URL "https://cdn.fxn.ai/fxnc/${FXN_VERSION}/Function-win-arm64.dll" PARENT_SCOPE)
+        set(FXN_IMPLIB_URL "https://cdn.fxn.ai/fxnc/${FXN_VERSION}/Function-win-arm64.lib" PARENT_SCOPE)
     else()
         message(FATAL_ERROR "Failed to download Function library due to invalid platform: ${FXN_PLATFORM}")
     endif()
