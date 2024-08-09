@@ -1,3 +1,7 @@
+## 0.0.27
++ Fixed `FXNValueCreateBySerializingValue` function failing due to uninitialized COM library.
++ Fixed `FXNValueCreateByDeserializingValue` function failing due to uninitialized COM library.
+
 ## 0.0.26
 + Added `FXNValueCreateBySerializingValue` function for serializing values for making cloud predictions.
 + Added `FXNValueCreateByDeserializingValue` function for deserializing values for making cloud predictions.
