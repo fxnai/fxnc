@@ -17,7 +17,7 @@ project(
     VERSION ${FXN_VERSION}
     DESCRIPTION "Function unified C/C++ API for running Python functions on desktop, mobile, web, and in the cloud. Register at https://fxn.ai"
     HOMEPAGE_URL "https://github.com/fxnai/fxnc"
-    LANGUAGES C CXX
+    LANGUAGES C
 )
 
 # Settings
