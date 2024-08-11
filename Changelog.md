@@ -1,4 +1,5 @@
 ## 0.0.27
++ Fixed `FXNPredictorCreate` failing when predictor tag has a period (`'.'`) character.
 + Fixed `FXNValueCreateBySerializingValue` function failing due to uninitialized COM library.
 + Fixed `FXNValueCreateByDeserializingValue` function failing due to uninitialized COM library.
 
