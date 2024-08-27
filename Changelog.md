@@ -1,3 +1,6 @@
+## 0.0.28
++ Fixed compiler errors due to Function being compiled with static C++ STL on Android.
+
 ## 0.0.27
 + Fixed `FXNPredictorCreate` function failing when predictor tag has a period (`'.'`) character.
 + Fixed `FXNValueCreateBySerializingValue` function failing on Windows due to uninitialized COM library.
