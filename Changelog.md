@@ -1,4 +1,5 @@
 ## 0.0.28
++ Function now builds for Linux, across `x86_64` and `arm64` architectures.
 + Fixed compiler errors due to Function being compiled with static C++ STL on Android.
 
 ## 0.0.27
