@@ -1,3 +1,6 @@
+## 0.0.29
++ Minor stability improvements.
+
 ## 0.0.28
 + Function now builds for Linux, across `x86_64` and `arm64` architectures.
 
