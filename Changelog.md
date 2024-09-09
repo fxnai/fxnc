@@ -1,5 +1,5 @@
 ## 0.0.29
-+ Minor stability improvements.
++ Added support for inferring Function platform on Linux with `FXN_PLATFORM_AUTO` when compiling with CMake.
 
 ## 0.0.28
 + Function now builds for Linux, across `x86_64` and `arm64` architectures.
