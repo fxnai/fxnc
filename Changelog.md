@@ -1,3 +1,6 @@
+## 0.0.30
++ Function now requires macOS 12.0+.
+
 ## 0.0.29
 + Added support for inferring Function platform on Linux with `FXN_PLATFORM_AUTO` when compiling with CMake.
 
