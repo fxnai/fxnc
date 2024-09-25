@@ -1,4 +1,6 @@
 ## 0.0.30
++ Removed `FXNValueCreateBySerializingValue` function.
++ Removed `FXNValueCreateByDeserializingValue` function.
 + Function now requires macOS 12.0+.
 
 ## 0.0.29
