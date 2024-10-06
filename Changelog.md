@@ -1,4 +1,5 @@
 ## 0.0.30
++ Refactored `FXN_ACCELERATION_DEFAULT` enumeration constant to `FXN_ACCELERATION_AUTO`.
 + Removed `FXNValueCreateBySerializingValue` function.
 + Removed `FXNValueCreateByDeserializingValue` function.
 + Function now requires macOS 12.0+.
