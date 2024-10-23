@@ -1,3 +1,6 @@
+## 0.0.31
+*INCOMPLETE*
+
 ## 0.0.30
 + Fixed invalid code signing entitlements causing Apple to fail macOS App Store review for macOS apps (#2).
 + Refactored `FXN_ACCELERATION_DEFAULT` enumeration constant to `FXN_ACCELERATION_AUTO`.
