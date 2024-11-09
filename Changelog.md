@@ -1,5 +1,6 @@
 ## 0.0.31
-*INCOMPLETE*
++ Added iOS simulator support in `Function.xcframework`.
++ Removed invalid entitlements causing Function to fail App Store Review on macOS (#2).
 
 ## 0.0.30
 + Fixed invalid code signing entitlements causing Apple to fail macOS App Store review for macOS apps (#2).
