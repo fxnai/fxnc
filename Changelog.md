@@ -1,3 +1,6 @@
+## 0.0.32
++ Fixed crash when `FXNConfigurationGetUniqueID` function is used on some Android devices.
+
 ## 0.0.31
 + Added iOS simulator support in `Function.xcframework`.
 + Removed invalid entitlements causing Function to fail App Store Review on macOS (#2).
