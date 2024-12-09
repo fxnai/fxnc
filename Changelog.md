@@ -1,3 +1,6 @@
+## 0.0.33
++ Minor stability improvements.
+
 ## 0.0.32
 + Fixed crash when `FXNConfigurationGetUniqueID` function is used on some Android devices.
 
