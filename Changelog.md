@@ -1,3 +1,6 @@
+## 0.0.34
++ Fixed `FXNPredictorCreate` function failing in some release builds on Android.
+
 ## 0.0.33
 + Minor stability improvements.
 
