@@ -3,7 +3,7 @@
 //  Function
 //
 //  Created by Yusuf Olokoba on 10/14/2023.
-//  Copyright © 2024 NatML Inc. All rights reserved.
+//  Copyright © 2025 NatML Inc. All rights reserved.
 //
 
 #pragma once
@@ -12,7 +12,7 @@
 
 #define FXN_VERSION_MAJOR 0
 #define FXN_VERSION_MINOR 0
-#define FXN_VERSION_PATCH 34
+#define FXN_VERSION_PATCH 35
 
 /*!
  @function FXNGetVersion
