@@ -1,5 +1,6 @@
 ## 0.0.35
 + Added support for Apple Vision Pro (visionOS).
++ Function now requires GLIBC 2.35 on Linux.
 
 ## 0.0.34
 + Fixed `FXNPredictorCreate` function failing in some release builds on Android.
